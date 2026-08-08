@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nexarvia Learning OS — Course / Chapter</title><link rel="stylesheet" href="styles.css"></head>
+<body><div class="app">
+<aside class="sidebar"><div class="brand"><span class="brand-dot"></span><div><b>NEXARVIA</b><small>LEARNING OS</small></div></div>
+<nav><a href="index.html">⌂ <span>Command Center</span></a><a href="learning-path.html">◈ <span>Learning Path</span></a><a class="active">▤ <span>Course / Chapter</span></a><a>⚡ <span>Practice</span></a><a>▣ <span>Projects</span></a><a>◎ <span>Skills</span></a><a>◆ <span>Career</span></a></nav>
+<div class="side-card"><span>AI</span><b>Learning Companion</b><p>Ask about the current lesson, get an explanation, or practice a concept.</p><button>Open Companion</button></div>
+<div class="profile"><div class="avatar">S</div><div><b>Student</b><small>Frontend Path</small></div><span>•••</span></div></aside>
+<main>
+<header class="topbar"><button class="mobile-menu">☰</button><div class="search">⌕ <span>Search courses, skills, projects...</span></div><div class="top-actions"><button>◔</button><button>🔔</button><div class="mini-avatar">S</div></div></header>
+<div class="crumb">Learning Path <span>›</span> React Engineering <span>›</span> Chapter 02</div>
+<section class="lesson-head"><div><span class="eyebrow">CHAPTER 02 · REACT ENGINEERING</span><h1>State Management <span>✦</span></h1><p>Understand how state flows through a React interface and choose the right level of state for each problem.</p></div><div class="chapter-progress"><strong>68%</strong><span>chapter progress</span><div class="bar"><span style="width:68%"></span></div></div></section>
+
+<section class="lesson-layout">
+<div class="lesson-main">
+<article class="card lesson-video"><div class="video-top"><span>LESSON 02.1</span><span>12:48</span></div><div class="video-stage"><div class="orb"></div><div class="play">▶</div><div class="video-caption"><b>State flows through your component tree</b><small>Visual lesson · 12 min</small></div></div>
+<div class="video-controls"><span>▶</span><div class="seek"><i style="width:42%"></i></div><span>12:48</span><span>⚙</span><span>⛶</span></div></article>
+
+<article class="card concept"><span class="label">💡 CORE CONCEPT</span><h2>State should live where it is needed.</h2><p>Start with local state. Lift it only when multiple components genuinely need to share the same changing information. This keeps your interface easier to reason about and maintain.</p>
+<div class="concept-grid"><div><b>Local state</b><small>One component owns the value.</small></div><div><b>Shared state</b><small>Move ownership to a common parent.</small></div><div><b>Server state</b><small>Data comes from an external source.</small></div></div></article>
+
+<article class="card checkpoint"><div class="card-head"><div><span class="label">🧪 QUICK CHECKPOINT</span><h2>Where should this state live?</h2></div><span class="pill">1 min</span></div><p class="muted">Two sibling components need to read and update the same selected course.</p>
+<div class="answers"><button>Inside the first component</button><button class="correct">In their nearest common parent ✓</button><button>Only inside the browser storage</button></div>
+<div class="feedback">✓ Correct. Shared state belongs at the lowest common owner that needs to coordinate it.</div></article>
+
+<div class="lesson-nav"><button>← Previous</button><button class="primary">Continue to next lesson →</button></div>
+</div>
+
+<aside class="lesson-side">
+<article class="card chapter-list"><div class="card-head"><div><span class="label">CHAPTER CONTENT</span><h2>React Engineering</h2></div><span class="pill">68%</span></div>
+<div class="chapter-item done"><span>✓</span><div><b>01 · Component Architecture</b><small>Complete · 42 min</small></div></div>
+<div class="chapter-item active-item"><span>02</span><div><b>02 · State Management</b><small>In progress · 32 min</small></div></div>
+<div class="chapter-item"><span>03</span><div><b>03 · Advanced Patterns</b><small>Locked · 46 min</small></div><i>🔒</i></div>
+<div class="chapter-item"><span>04</span><div><b>04 · Performance</b><small>Locked · 38 min</small></div><i>🔒</i></div>
+</article>
+<article class="card notes"><span class="label">🔖 YOUR NOTES</span><p>Save a thought while learning. Notes will follow you across chapters.</p><textarea placeholder="Write a quick note..."></textarea><button>Save note</button></article>
+<article class="card ai-card"><span class="label">🤖 AI COMPANION</span><h2>Stuck on a concept?</h2><p>Ask for a simpler explanation, an example, or a practice problem based on this lesson.</p><button class="primary">Ask about this lesson →</button></article>
+</aside></section>
+</main></div><script src="app.js"></script></body></html>
