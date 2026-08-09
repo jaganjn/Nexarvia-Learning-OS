@@ -1,0 +1,4 @@
+-- Initial migration placeholder.
+-- Run `npx prisma migrate dev --name init` to generate a provider-specific
+-- migration from schema.prisma in a connected development database.
+-- Production deployments should use `npx prisma migrate deploy`.

@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nexarvia Learning OS — Practice Lab</title><link rel="stylesheet" href="styles.css"></head><body><div class="app">
+<aside class="sidebar"><div class="brand"><span class="brand-dot"></span><div><b>NEXARVIA</b><small>LEARNING OS</small></div></div><nav><a href="index.html">⌂ <span>Student Dashboard</span></a><a href="learning-path.html">◈ <span>Learning Path</span></a><a href="course-chapter.html">▤ <span>Course / Chapter</span></a><a href="pdf-learning-composer.html">▧ <span>PDF Composer</span></a><a href="live-classroom.html">◉ <span>Live Classroom</span></a><a class="active">⚡ <span>Practice Lab</span></a><a>▣ <span>Projects</span></a><a>◎ <span>Skills</span></a><a href="ai-learning-companion.html">✦ <span>AI Companion</span></a>
+<a href="career-capability-passport.html">◆ <span>Capability Passport</span></a>
+<a href="adaptive-learning.html">◇ <span>Adaptive Learning</span></a>
+<a href="skill-verification.html">✓ <span>Skill Verification</span></a>
+<a href="learning-analytics.html">◌ <span>Learning Analytics</span></a>
+<a href="smart-study-planner.html">◷ <span>Study Planner</span></a>
+<a href="notifications.html">🔔 <span>Notifications</span></a>
+<a href="mentor-connect.html">◎ <span>Mentor Connect</span></a>
+<a href="motivation.html">✦ <span>Motivation</span></a>
+<a href="evidence-portfolio.html">◇ <span>Evidence & Portfolio</span></a>
+<a href="career-navigator.html">◆ <span>Career Navigator</span></a>
+<a href="interview-lab.html">◎ <span>Interview Lab</span></a>
+<a href="opportunity-studio.html">↗ <span>Opportunity Studio</span></a>
+<a href="application-copilot.html">✦ <span>Application Copilot</span></a>
+<a href="project-collaboration.html">▣ <span>Project Collaboration</span></a>
+<a href="learning-twin.html">◉ <span>Learning Twin</span></a>
+<a href="learning-graph.html">◇ <span>Learning Graph</span></a>
+  </nav><div class="side-card"><span>AI</span><b>Practice Coach</b><p>Get hints without giving away the answer.</p><button>Open Coach</button></div><div class="profile"><div class="avatar">S</div><div><b>Student</b><small>Frontend Path</small></div><span>•••</span></div></aside>
+<main><header class="topbar"><button class="mobile-menu">☰</button><div class="search">⌕ <span>Search courses, skills, projects...</span></div><div class="top-actions"><button>◔</button><button>🔔</button><div class="mini-avatar">S</div></div></header>
+<section class="practice-hero"><div><span class="eyebrow">PRACTICE LAB · REACT ENGINEERING</span><h1>Build it. Test it. Understand it. <span>✦</span></h1><p>Practice turns lesson concepts into working capability. Start with a guided task, use hints when needed, and get feedback on your approach.</p></div><div class="streak"><b>04</b><small>day practice streak</small><div>⚡ ⚡ ⚡ ⚡</div></div></section>
+<section class="lab-layout"><div class="lab-main">
+<article class="card challenge"><div class="challenge-head"><div><span class="label">CHALLENGE 02 · STATE MANAGEMENT</span><h2>Build a shared course filter</h2></div><span class="pill">15–20 min</span></div><p class="muted">Create a filter component that lets two sibling views respond to the same selected category. Keep state at the lowest common owner.</p><div class="requirements"><b>What you'll practice</b><span>State ownership</span><span>Props</span><span>Event flow</span><span>Component composition</span></div><div class="editor"><div class="editor-bar"><span>CourseFilter.jsx</span><span>● Ready</span></div><pre><code>function CourseFilter({ categories, selected, onChange }) {
+  return (
+    &lt;select value={selected} onChange={e =&gt; onChange(e.target.value)}&gt;
+      {categories.map(category =&gt; (
+        &lt;option key={category}&gt;{category}&lt;/option&gt;
+      ))}
+    &lt;/select&gt;
+  );
+}</code></pre></div><div class="editor-footer"><span>Starter code provided</span><button class="primary">Run solution ▶</button></div></article>
+<article class="card tests"><div class="card-head"><div><span class="label">LIVE FEEDBACK</span><h2>Test results</h2></div><span class="pill">3 / 4 passing</span></div><div class="test-row pass"><span>✓</span><div><b>Filter renders categories</b><small>Passed · 120ms</small></div></div><div class="test-row pass"><span>✓</span><div><b>Selection updates correctly</b><small>Passed · 84ms</small></div></div><div class="test-row pass"><span>✓</span><div><b>Sibling view receives selection</b><small>Passed · 91ms</small></div></div><div class="test-row fail"><span>!</span><div><b>State is owned at the common parent</b><small>Needs attention</small></div></div><div class="hint">💡 Hint: Ask which component has enough information to coordinate both views without duplicating state.</div></article></div>
+<aside class="lab-side"><article class="card progress-card"><span class="label">YOUR PROGRESS</span><h2>State Management</h2><div class="big-progress"><b>72%</b><div><i style="width:72%"></i></div></div><p class="muted">5 of 7 practice activities completed.</p></article><article class="card coach"><span class="label">🤖 AI PRACTICE COACH</span><h2>Need a nudge?</h2><p class="muted">I can explain the failing test, give a smaller hint, or ask you a question that helps you solve it yourself.</p><button class="primary full">Get a hint →</button><button class="secondary full">Explain the concept</button></article><article class="card skill-update"><span class="label">SKILL SIGNAL</span><h2>Component Design</h2><p class="muted">Your latest attempts are improving your confidence in state ownership.</p><div class="signal"><span>Emerging</span><b>→</b><span>Developing</span></div></article></aside></section>
+<section class="next-practice card"><div><span class="label">UP NEXT</span><h2>Applied challenge: Refactor a dashboard</h2><p class="muted">Use component composition and shared state to simplify a real interface.</p></div><button>View challenge →</button></section>
+</main></div><script src="app.js"></script><script src="api-client.js"></script></body></html>
