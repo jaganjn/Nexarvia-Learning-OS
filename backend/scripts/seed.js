@@ -24,8 +24,8 @@ async function main() {
   });
   await prisma.lesson.upsert({
     where:{chapterId_order:{chapterId:chapter.id,order:1}},
-    update:{title:"Debugging API failures",kind:"PRACTICE"},
-    create:{chapterId:chapter.id,title:"Debugging API failures",kind:"PRACTICE",order:1}
+    update:{title:"Debugging API failures",kind:"PRACTICE", published:true},
+    create:{chapterId:chapter.id,title:"Debugging API failures",kind:"PRACTICE", published:true,order:1}
   });
   const email = "demo@nexarvia.local";
   const passwordHash = await bcrypt.hash("ChangeMe123!",12);

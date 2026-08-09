@@ -191,6 +191,117 @@ app.patch("/api/opportunities/:id/status", auth, asyncRoute(async (req,res) => {
   res.json(item);
 }));
 
+app.get("/api/courses/:id", auth, asyncRoute(async (req,res) => {
+  const course = await prisma.course.findUnique({
+    where:{id:req.params.id},
+    include:{
+      chapters:{
+        orderBy:{order:"asc"},
+        include:{lessons:{where:{published:true},orderBy:{order:"asc"},include:{assets:true}}}
+      }
+    }
+  });
+  if (!course) return res.status(404).json({error:"Course not found"});
+  const enrollment = await prisma.enrollment.findUnique({
+    where:{userId_courseId:{userId:req.user.id,courseId:course.id}}
+  });
+  res.json({course,enrollment});
+}));
+
+app.post("/api/courses/:id/enroll", auth, asyncRoute(async (req,res) => {
+  const course = await prisma.course.findUnique({where:{id:req.params.id}});
+  if (!course || !course.published) return res.status(404).json({error:"Published course not found"});
+  const enrollment = await prisma.enrollment.upsert({
+    where:{userId_courseId:{userId:req.user.id,courseId:course.id}},
+    update:{},
+    create:{userId:req.user.id,courseId:course.id,progress:0}
+  });
+  res.status(201).json(enrollment);
+}));
+
+app.get("/api/lessons/:id", auth, asyncRoute(async (req,res) => {
+  const lesson = await prisma.lesson.findUnique({
+    where:{id:req.params.id},
+    include:{chapter:{include:{course:true}},assets:true}
+  });
+  if (!lesson || !lesson.published) return res.status(404).json({error:"Lesson not found"});
+  const enrollment = await prisma.enrollment.findUnique({
+    where:{userId_courseId:{userId:req.user.id,courseId:lesson.chapter.courseId}}
+  });
+  if (!enrollment) return res.status(403).json({error:"Enroll in the course first"});
+  const progress = await prisma.lessonProgress.findUnique({
+    where:{userId_lessonId:{userId:req.user.id,lessonId:lesson.id}}
+  });
+  res.json({lesson,progress});
+}));
+
+app.put("/api/lessons/:id/progress", auth, asyncRoute(async (req,res) => {
+  const data = z.object({
+    percent:z.number().min(0).max(100),
+    lastPosition:z.number().int().min(0).optional(),
+    completed:z.boolean().optional()
+  }).parse(req.body);
+  const lesson = await prisma.lesson.findUnique({where:{id:req.params.id},include:{chapter:true}});
+  if (!lesson) return res.status(404).json({error:"Lesson not found"});
+  const enrollment = await prisma.enrollment.findUnique({
+    where:{userId_courseId:{userId:req.user.id,courseId:lesson.chapter.courseId}}
+  });
+  if (!enrollment) return res.status(403).json({error:"Enroll in the course first"});
+  const completed = data.completed ?? data.percent >= 100;
+  const progress = await prisma.lessonProgress.upsert({
+    where:{userId_lessonId:{userId:req.user.id,lessonId:lesson.id}},
+    update:{percent:data.percent,lastPosition:data.lastPosition,completed,completedAt:completed?new Date():null},
+    create:{userId:req.user.id,lessonId:lesson.id,percent:data.percent,lastPosition:data.lastPosition,completed,completedAt:completed?new Date():null}
+  });
+
+  const allLessons = await prisma.lesson.count({where:{chapter:{courseId:lesson.chapter.courseId,published:true},published:true}});
+  const completedLessons = await prisma.lessonProgress.count({
+    where:{userId:req.user.id,completed:true,lesson:{chapter:{courseId:lesson.chapter.courseId}}}
+  });
+  const courseProgress = allLessons ? Math.round((completedLessons/allLessons)*100) : 0;
+  await prisma.enrollment.update({
+    where:{userId_courseId:{userId:req.user.id,courseId:lesson.chapter.courseId}},
+    data:{progress:courseProgress/100,lastSeenAt:new Date()}
+  });
+  res.json({progress,courseProgress});
+}));
+
+app.post("/api/courses/:id/chapters", auth, requireRole("ADMIN","INSTRUCTOR"), asyncRoute(async (req,res) => {
+  const data = z.object({title:z.string().min(2),order:z.number().int().positive(),contentJson:z.any().optional()}).parse(req.body);
+  const chapter = await prisma.chapter.create({data:{...data,courseId:req.params.id}});
+  res.status(201).json(chapter);
+}));
+
+app.post("/api/chapters/:id/lessons", auth, requireRole("ADMIN","INSTRUCTOR"), asyncRoute(async (req,res) => {
+  const data = z.object({
+    title:z.string().min(2),
+    kind:z.enum(["READING","VIDEO","PDF","LIVE","PRACTICE","PROJECT","ASSESSMENT"]),
+    order:z.number().int().positive(),
+    contentJson:z.any().optional(),
+    durationMin:z.number().int().positive().optional(),
+    contentUrl:z.string().url().optional(),
+    published:z.boolean().optional()
+  }).parse(req.body);
+  const lesson = await prisma.lesson.create({data:{...data,chapterId:req.params.id}});
+  res.status(201).json(lesson);
+}));
+
+app.post("/api/lessons/:id/assets", auth, requireRole("ADMIN","INSTRUCTOR"), asyncRoute(async (req,res) => {
+  const data = z.object({
+    type:z.enum(["PDF","VIDEO","IMAGE","DOCUMENT","LINK"]),
+    title:z.string().min(2),
+    storageKey:z.string().optional(),
+    url:z.string().url().optional(),
+    mimeType:z.string().optional(),
+    sizeBytes:z.number().int().nonnegative().optional(),
+    metadata:z.any().optional()
+  }).parse(req.body);
+  const lesson = await prisma.lesson.findUnique({where:{id:req.params.id}});
+  if (!lesson) return res.status(404).json({error:"Lesson not found"});
+  const asset = await prisma.contentAsset.create({data:{...data,lessonId:lesson.id}});
+  res.status(201).json(asset);
+}));
+
 app.post("/api/courses", auth, requireRole("ADMIN","INSTRUCTOR"), asyncRoute(async (req,res) => {
   const data = z.object({
     slug:z.string().regex(/^[a-z0-9-]+$/), title:z.string().min(2),

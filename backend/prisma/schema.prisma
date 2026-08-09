@@ -32,6 +32,24 @@ enum SubmissionStatus {
   REJECTED
 }
 
+enum LessonKind {
+  READING
+  VIDEO
+  PDF
+  LIVE
+  PRACTICE
+  PROJECT
+  ASSESSMENT
+}
+
+enum ContentAssetType {
+  PDF
+  VIDEO
+  IMAGE
+  DOCUMENT
+  LINK
+}
+
 enum OpportunityStatus {
   SAVED
   APPLIED
@@ -55,6 +73,7 @@ model User {
   sessions      Session[]
   notifications Notification[]
   auditLogs     AuditLog[]
+  lessonProgress LessonProgress[]
 }
 
 model StudentProfile {
@@ -90,6 +109,7 @@ model Chapter {
   order       Int
   contentJson Json
   lessons     Lesson[]
+  assets      ContentAsset[]
   @@unique([courseId, order])
 }
 
@@ -97,12 +117,54 @@ model Lesson {
   id         String   @id @default(cuid())
   chapterId  String
   chapter    Chapter  @relation(fields: [chapterId], references: [id], onDelete: Cascade)
-  title      String
-  kind       String
-  contentUrl String?
-  order      Int
+  title       String
+  kind        LessonKind
+  contentJson Json?
+  durationMin Int?
+  published   Boolean  @default(false)
+  contentUrl  String?
+  order       Int
+  assets      ContentAsset[]
+  progress    LessonProgress[]
   @@unique([chapterId, order])
 }
+
+model ContentAsset {
+  id          String            @id @default(cuid())
+  courseId    String?
+  chapterId   String?
+  lessonId    String?
+  type        ContentAssetType
+  title       String
+  storageKey  String?
+  url         String?
+  mimeType    String?
+  sizeBytes   Int?
+  metadata    Json?
+  createdAt   DateTime          @default(now())
+  course      Course?           @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  chapter     Chapter?          @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  lesson      Lesson?           @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  @@index([courseId])
+  @@index([chapterId])
+  @@index([lessonId])
+}
+
+model LessonProgress {
+  id           String    @id @default(cuid())
+  userId       String
+  lessonId     String
+  completed    Boolean   @default(false)
+  percent      Float     @default(0)
+  lastPosition Int?
+  completedAt  DateTime?
+  updatedAt    DateTime  @updatedAt
+  lesson       Lesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([userId, lessonId])
+  @@index([userId])
+}
+
 
 model Enrollment {
   id          String   @id @default(cuid())
