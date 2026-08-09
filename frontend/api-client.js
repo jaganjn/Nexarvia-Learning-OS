@@ -43,6 +43,11 @@ window.NexarviaAPI = (() => {
     refreshAIRecommendations: ()=>request("/api/ai/recommendations/refresh",{method:"POST"}),
     aiRemediation: ()=>request("/api/ai/remediation",{method:"POST"}),
     learningSignal: (body)=>request("/api/learning-signals",{method:"POST"}),
+    capabilities: ()=>request("/api/capabilities"),
+    capabilityProfile: ()=>request("/api/capabilities/profile"),
+    learningTwin: ()=>request("/api/learning-twin"),
+    recalculateCapabilities: ()=>request("/api/capabilities/recalculate",{method:"POST"}),
+    linkEvidence: (id,body)=>request(`/api/capabilities/${id}/link-evidence`,{method:"POST",body:JSON.stringify(body)}),
     recommendationDecision: (id,accepted)=>request(`/api/recommendations/${id}/decision`,{method:"POST",body:JSON.stringify({accepted})})
   };
 })();

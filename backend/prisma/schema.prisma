@@ -61,6 +61,22 @@ enum ContentAssetType {
   LINK
 }
 
+enum MasteryLevel {
+  UNKNOWN
+  BEGINNER
+  DEVELOPING
+  COMPETENT
+  PROFICIENT
+  VERIFIED
+}
+
+enum CapabilityEvidenceStatus {
+  PENDING
+  SUPPORTING
+  VERIFIED
+  EXPIRED
+}
+
 enum AIInteractionType {
   CHAT
   EXPLANATION
@@ -109,6 +125,8 @@ model User {
   recommendations Recommendation[]
   aiInteractions AIInteraction[]
   learningSignals LearningSignal[]
+  capabilityProfiles CapabilityProfile[]
+  masterySnapshots MasterySnapshot[]
 }
 
 model StudentProfile {
@@ -305,6 +323,7 @@ model Evidence {
   updatedAt      DateTime      @updatedAt
   user           User          @relation("EvidenceOwner", fields: [userId], references: [id], onDelete: Cascade)
   submission     ProjectSubmission? @relation(fields: [submissionId], references: [id], onDelete: SetNull)
+  capabilityLinks CapabilityEvidence[]
   @@index([userId, type])
   @@index([submissionId])
 }
@@ -395,6 +414,70 @@ model Recommendation {
   createdAt   DateTime @default(now())
 }
 
+
+
+model Capability {
+  id             String          @id @default(cuid())
+  key            String          @unique
+  name           String
+  description    String?
+  category       String?
+  levelOrder     Int             @default(1)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  requirements   CapabilityRequirement[]
+  profiles       CapabilityProfile[]
+}
+
+model CapabilityRequirement {
+  id             String      @id @default(cuid())
+  capabilityId   String
+  requirementKey String
+  description    String?
+  weight         Float       @default(1)
+  threshold      Float       @default(0.7)
+  capability     Capability  @relation(fields: [capabilityId], references: [id], onDelete: Cascade)
+  @@unique([capabilityId, requirementKey])
+}
+
+model CapabilityProfile {
+  id             String             @id @default(cuid())
+  userId         String
+  capabilityId   String
+  mastery        Float              @default(0)
+  level          MasteryLevel       @default(UNKNOWN)
+  verified       Boolean            @default(false)
+  confidence     Float              @default(0)
+  lastAssessedAt DateTime?
+  updatedAt      DateTime           @updatedAt
+  user           User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  capability     Capability         @relation(fields: [capabilityId], references: [id], onDelete: Cascade)
+  evidenceLinks  CapabilityEvidence[]
+  @@unique([userId, capabilityId])
+  @@index([userId, mastery])
+}
+
+model CapabilityEvidence {
+  id            String                   @id @default(cuid())
+  capabilityId  String
+  evidenceId    String
+  status        CapabilityEvidenceStatus  @default(PENDING)
+  contribution  Float                    @default(0)
+  createdAt     DateTime                 @default(now())
+  capability    Capability               @relation(fields: [capabilityId], references: [id], onDelete: Cascade)
+  evidence      Evidence                 @relation(fields: [evidenceId], references: [id], onDelete: Cascade)
+  @@unique([capabilityId, evidenceId])
+}
+
+model MasterySnapshot {
+  id             String    @id @default(cuid())
+  userId         String
+  masteryJson    Json
+  reason         String?
+  createdAt      DateTime  @default(now())
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId, createdAt])
+}
 
 model AIInteraction {
   id           String            @id @default(cuid())

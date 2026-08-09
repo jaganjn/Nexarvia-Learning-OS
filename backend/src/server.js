@@ -8,6 +8,7 @@ import { PrismaClient } from "@prisma/client";
 import crypto from "node:crypto";
 import { loadConfig } from "./config.js";
 import { generateAI } from "./ai-engine.js";
+import { levelFor, scoreEvidence, aggregateMastery } from "./capability-engine.js";
 
 const prisma = new PrismaClient();
 const app = express();
