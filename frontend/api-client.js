@@ -46,6 +46,12 @@ window.NexarviaAPI = (() => {
     capabilities: ()=>request("/api/capabilities"),
     capabilityProfile: ()=>request("/api/capabilities/profile"),
     learningTwin: ()=>request("/api/learning-twin"),
+    passport: ()=>request("/api/passport"),
+    savePassport: (body)=>request("/api/passport",{method:"POST",body:JSON.stringify(body)}),
+    addPassportItem: (body)=>request("/api/passport/items",{method:"POST",body:JSON.stringify(body)}),
+    opportunities: ()=>request("/api/opportunities"),
+    matchOpportunities: ()=>request("/api/opportunities/match",{method:"POST"}),
+    opportunityStatus: (id,status)=>request(`/api/opportunities/${id}/status`,{method:"POST",body:JSON.stringify({status})}),
     recalculateCapabilities: ()=>request("/api/capabilities/recalculate",{method:"POST"}),
     linkEvidence: (id,body)=>request(`/api/capabilities/${id}/link-evidence`,{method:"POST",body:JSON.stringify(body)}),
     recommendationDecision: (id,accepted)=>request(`/api/recommendations/${id}/decision`,{method:"POST",body:JSON.stringify({accepted})})
