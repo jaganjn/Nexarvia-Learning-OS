@@ -22,42 +22,6 @@ enum EvidenceType {
   PORTFOLIO
   INTERVIEW
   ASSESSMENT
-}
-
-enum SubmissionStatus {
-  DRAFT
-  SUBMITTED
-  REVIEWED
-  VERIFIED
-  REJECTED
-}
-
-enum LessonKind {
-  READING
-  VIDEO
-  PDF
-  LIVE
-  PRACTICE
-  PROJECT
-  ASSESSMENT
-}
-
-enum ProjectStatus {
-  DRAFT
-  PUBLISHED
-  IN_PROGRESS
-  SUBMITTED
-  UNDER_REVIEW
-  APPROVED
-  CHANGES_REQUESTED
-  REJECTED
-}
-
-enum EvidenceType {
-  PROJECT
-  ASSESSMENT
-  PRACTICE
-  PORTFOLIO
   EXTERNAL
 }
 
@@ -97,6 +61,23 @@ enum ContentAssetType {
   LINK
 }
 
+enum AIInteractionType {
+  CHAT
+  EXPLANATION
+  RECOMMENDATION
+  REMEDIATION
+  PROJECT_FEEDBACK
+  CONTENT_QA
+}
+
+enum LearningSignalType {
+  LESSON_PROGRESS
+  ASSESSMENT_RESULT
+  PROJECT_RESULT
+  PRACTICE_RESULT
+  SELF_REPORTED
+}
+
 enum OpportunityStatus {
   SAVED
   APPLIED
@@ -116,7 +97,6 @@ model User {
   profile       StudentProfile?
   enrollments   Enrollment[]
   submissions   Submission[]
-  evidence      Evidence[]
   sessions      Session[]
   notifications Notification[]
   auditLogs     AuditLog[]
@@ -125,6 +105,10 @@ model User {
   projectSubmissions ProjectSubmission[]
   evidenceOwned Evidence[] @relation("EvidenceOwner")
   projectReviews ProjectReview[] @relation("ProjectReviewer")
+  evidenceOwned Evidence[] @relation("EvidenceOwner")
+  recommendations Recommendation[]
+  aiInteractions AIInteraction[]
+  learningSignals LearningSignal[]
 }
 
 model StudentProfile {
@@ -239,21 +223,7 @@ model Capability {
   graphEdges  LearningEdge[] @relation("CapabilityEdges")
 }
 
-model Evidence {
-  id           String       @id @default(cuid())
-  userId       String
-  capabilityId String?
-  type         EvidenceType
-  title        String
-  sourceRef    String?
-  score        Float?
-  verified     Boolean      @default(false)
-  metadata     Json?
-  createdAt    DateTime     @default(now())
-  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  capability   Capability?  @relation(fields: [capabilityId], references: [id])
-  submissions  Submission[]
-}
+
 
 model Submission {
   id         String           @id @default(cuid())
@@ -303,7 +273,6 @@ model ProjectSubmission {
   project        Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
   user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   reviews        ProjectReview[]
-  evidence      Evidence[]
   @@index([projectId, userId])
 }
 
@@ -424,6 +393,33 @@ model Recommendation {
   score       Float
   accepted    Boolean?
   createdAt   DateTime @default(now())
+}
+
+
+model AIInteraction {
+  id           String            @id @default(cuid())
+  userId       String
+  type         AIInteractionType
+  requestJson  Json
+  responseJson Json
+  provider     String
+  model        String?
+  createdAt    DateTime          @default(now())
+  user         User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId, createdAt])
+}
+
+model LearningSignal {
+  id          String             @id @default(cuid())
+  userId      String
+  type        LearningSignalType
+  sourceId    String?
+  topic       String?
+  value       Float?
+  metadata    Json?
+  createdAt   DateTime           @default(now())
+  user        User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId, type, createdAt])
 }
 
 model Opportunity {

@@ -7,6 +7,7 @@ import { z } from "zod";
 import { PrismaClient } from "@prisma/client";
 import crypto from "node:crypto";
 import { loadConfig } from "./config.js";
+import { generateAI } from "./ai-engine.js";
 
 const prisma = new PrismaClient();
 const app = express();

@@ -1,0 +1,10 @@
+{
+  "backend/src/server.js": {
+    "ok": true,
+    "stderr": ""
+  },
+  "backend/src/ai-engine.js": {
+    "ok": true,
+    "stderr": ""
+  }
+}
