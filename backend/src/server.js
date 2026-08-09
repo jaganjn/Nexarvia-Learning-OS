@@ -11,6 +11,7 @@ import { generateAI } from "./ai-engine.js";
 import { levelFor, scoreEvidence, aggregateMastery } from "./capability-engine.js";
 import { recordAudit, recordEvent, queueJob, summarizeEvents } from "./operations-engine.js";
 import { securityHeaders, validateProductionEnv, readinessScore } from "./release-readiness.js";
+import { journeyState } from "./student-journey.js";
 
 const prisma = new PrismaClient();
 const app = express();

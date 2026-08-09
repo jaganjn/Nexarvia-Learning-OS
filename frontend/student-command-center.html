@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nexarvia — Student Command Center</title><link rel="stylesheet" href="styles.css"></head>
+<body><div class="app">
+<aside class="sidebar"><div class="brand"><span class="brand-dot"></span><div><b>NEXARVIA</b><small>LEARNING OS</small></div></div>
+<nav>
+<a href="student-command-center.html" class="active">⌂ <span>My Learning</span></a>
+<a href="learning-path.html">◈ <span>Learning Path</span></a>
+<a href="course-chapter.html">▤ <span>Courses</span></a>
+<a href="practice-lab.html">⚡ <span>Practice</span></a>
+<a href="project-lab.html">▣ <span>Projects</span></a>
+<a href="ai-learning-engine.html">✦ <span>AI Companion</span></a>
+<a href="learning-twin-engine.html">◉ <span>My Capabilities</span></a>
+<a href="career-capability-passport.html">◆ <span>Passport & Career</span></a>
+<a href="operations-analytics.html">◌ <span>Analytics</span></a>
+</nav></aside>
+<main><header class="topbar"><button class="mobile-menu">☰</button><div class="search">⌕ <span>My Learning</span></div><div class="top-actions"><button>🔔</button><div class="mini-avatar">S</div></div></header>
+<section class="hero"><div><span class="eyebrow">SPRINT 10 · FULL STUDENT EXPERIENCE</span><h1>Everything you need to <span>keep learning.</span></h1><p>One student journey across learning, practice, projects, AI support, capability building and career preparation.</p></div></section>
+<section class="next card"><div><span class="label">YOUR NEXT BEST ACTION</span><h2 id="next">Loading your journey…</h2><p id="nextDetail">We are checking your latest learning activity.</p><button id="go" class="cta">Continue</button></div></section>
+<section class="stats" id="stats"><div><b>—</b><span>Lessons completed</span></div><div><b>—</b><span>Assessments</span></div><div><b>—</b><span>Projects</span></div><div><b>—</b><span>Verified capabilities</span></div></section>
+<section class="grid">
+<article class="card"><span class="label">LEARNING FLOW</span><h2>One connected system</h2><div class="flow"><div>Learn</div><i>→</i><div>Practice</div><i>→</i><div>Build</div><i>→</i><div>Prove</div><i>→</i><div>Grow</div></div></article>
+<article class="card"><span class="label">QUICK ACCESS</span><h2>Go directly</h2><div class="links"><a href="practice-lab.html">⚡ Practice something</a><a href="project-lab.html">▣ Work on a project</a><a href="ai-learning-engine.html">✦ Ask the AI companion</a><a href="learning-twin-engine.html">◉ Check my capabilities</a><a href="career-capability-passport.html">◆ View my passport</a></div></article>
+</section>
+<script src="app.js"></script><script src="api-client.js"></script><script>
+async function load(){try{const r=await NexarviaAPI.studentJourney();const j=r.journey;next.textContent=j.label;nextDetail.textContent='Current stage: '+j.stage.replaceAll('_',' ');const map={LEARN:'learning-path.html',PRACTICE:'practice-lab.html',PROJECT_REVIEW:'project-lab.html',REMEDIATION:'ai-learning-engine.html',BUILD_CAPABILITY:'learning-twin-engine.html',CAREER:'career-capability-passport.html'};go.onclick=()=>location.href=map[j.stage]||'learning-path.html';stats.innerHTML=`<div><b>${r.summary.lessonsCompleted}</b><span>Lessons completed</span></div><div><b>${r.summary.assessments}</b><span>Assessments</span></div><div><b>${r.summary.projects}</b><span>Projects</span></div><div><b>${r.summary.verifiedCapabilities}</b><span>Verified capabilities</span></div>`}catch(e){next.textContent='Unable to load your journey';nextDetail.textContent=e.message}}load();
+</script>
+<style>
+.hero{padding:32px 0 20px}.hero p{max-width:720px;color:#71879a;font-size:10px;line-height:1.6}.next{border-color:#285568!important;background:#091b27!important}.next h2{font-size:18px;margin:8px 0}.next p{font-size:7px;color:#71879a}.cta{background:#102f3d;border:1px solid #285568;color:#7ce5e9;border-radius:7px;padding:9px 13px;font-size:7px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:15px 0}.stats>div{border:1px solid #19364a;background:#091722;padding:13px;border-radius:8px}.stats b,.stats span{display:block}.stats b{font-size:16px}.stats span{font-size:6px;color:#71879a;margin-top:3px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.flow{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:15px}.flow div{padding:9px 12px;border:1px solid #1d4253;background:#0b1b25;border-radius:7px;font-size:7px}.flow i{font-style:normal;color:#4dbfc6}.links{display:grid;gap:7px;margin-top:12px}.links a{padding:10px;border:1px solid #19364a;background:#091722;border-radius:7px;font-size:7px;color:#a7bbc8;text-decoration:none}.links a:hover{border-color:#285568;color:#7ce5e9}@media(max-width:800px){.stats{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}}
+</style></main></div></body></html>
