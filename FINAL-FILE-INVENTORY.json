@@ -1,0 +1,770 @@
+{
+  "release": "1.0.0",
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "705f601ce83bb1ae074194a74f362f59a9aa1b75cf88a127c965e5a56f06debd",
+      "bytes": 421
+    },
+    {
+      "path": "AUDIT-RESULT.md",
+      "sha256": "901a575ab67212723747ca44baaf53b8b86a167667f6f8b1595e0858d677acbb",
+      "bytes": 224
+    },
+    {
+      "path": "FINAL-RELEASE-CHECKLIST.md",
+      "sha256": "0434c8bcd2fbb5328ca5edfbe2cc924adbad8e19be4cacc2d669980ab9197b6d",
+      "bytes": 1079
+    },
+    {
+      "path": "FINAL-RELEASE-README.md",
+      "sha256": "b6b9bf2c5149e949fd6d8aff6d85bb95d5e5cbe8c4c33b406b07957e1f00ee01",
+      "bytes": 1651
+    },
+    {
+      "path": "LEVEL-4-COMPLETION.json",
+      "sha256": "66fb0045170cbd3f7e3a0d6cd86a9e5360db6cc54b95c3b7dd2fdc07a2dea486",
+      "bytes": 1311
+    },
+    {
+      "path": "LEVEL-4-COMPLETION.md",
+      "sha256": "cd9cb660929e01ab1ea67038d448b89633ddd61753f2c6a6e8e232585fb6f0cd",
+      "bytes": 1137
+    },
+    {
+      "path": "LEVEL-5-COMPLETION-MATRIX.md",
+      "sha256": "550ffae0012cabd093f4dc6f3e926552f871875d7d8e47c2c3bcde20f7485b5b",
+      "bytes": 2084
+    },
+    {
+      "path": "LEVEL-5-FINAL.md",
+      "sha256": "092c4ecaafefb19ab7c131c5705984c9ef2de870f5012dfceaae16b72c587692",
+      "bytes": 1337
+    },
+    {
+      "path": "LEVEL-5-INVENTORY.json",
+      "sha256": "8c60662172580de4e48c935e8d3132ded9cbf6863a4a43679dd72ee89970b8fe",
+      "bytes": 3093
+    },
+    {
+      "path": "NEXARVIA-4.0-README.md",
+      "sha256": "e6d4f83d4594b5c9b91482fee3301dbb1045ce557862d68805b961861c7c95c3",
+      "bytes": 1536
+    },
+    {
+      "path": "NEXARVIA-4.1-README.md",
+      "sha256": "6e067890891a82a6f3149be0df8d72553401a74be8508ebdaf56213aee284fcf",
+      "bytes": 818
+    },
+    {
+      "path": "PHASE-1.8.md",
+      "sha256": "50cf019802871f563e3db844e863fa6a6c2c23517115d758aff9cb6688c72297",
+      "bytes": 351
+    },
+    {
+      "path": "PHASE-1.9.md",
+      "sha256": "d159bc1890e2e7f6b0e1a1bd8a217db6221d865776c33019a4e4062b75969dc6",
+      "bytes": 426
+    },
+    {
+      "path": "PHASE-2.0.md",
+      "sha256": "a2440979bf3d75f9fcfee568178012049c52b92685210bc4a6093336fc73410c",
+      "bytes": 319
+    },
+    {
+      "path": "PHASE-2.1.md",
+      "sha256": "dbc1d70ba4b9f70d5dc2b5958c5516443caf3df2a2c3bdfbce4f3bb730caade9",
+      "bytes": 420
+    },
+    {
+      "path": "PHASE-2.2.md",
+      "sha256": "3b7bab028c6c5d3e226dcb84957502c95eb8c4f8cb676ddaab756001b2e8b4ef",
+      "bytes": 423
+    },
+    {
+      "path": "PHASE-2.3.md",
+      "sha256": "55e2dca03a56ed9abb8b3e7232a4c97f8b391cc5ce92520a06490ba43745976c",
+      "bytes": 430
+    },
+    {
+      "path": "PHASE-2.4.md",
+      "sha256": "dad5a1d07dfff5020d13648e77996e5cf32d8557730bbccbaba0a205a0b329db",
+      "bytes": 447
+    },
+    {
+      "path": "PHASE-2.5.md",
+      "sha256": "88084e42ce4181a5a5bbc8a508bd018b2cd7dd5c21868c19e66960629c33550d",
+      "bytes": 378
+    },
+    {
+      "path": "PHASE-2.6.md",
+      "sha256": "2f2424486277e2a27cd7d27518e43dd1c4a574785d3fada46ce3f71b82c827d6",
+      "bytes": 511
+    },
+    {
+      "path": "PHASE-2.7.md",
+      "sha256": "5b02633354073415c1be22c5fd12e4de0d1ee69ff3806394efd76daf7aa38894",
+      "bytes": 545
+    },
+    {
+      "path": "PHASE-2.8.md",
+      "sha256": "2a588c3aa1abd6eea0b475cf20e7c0cc78750a89de4d7e9841f67bed0065a220",
+      "bytes": 495
+    },
+    {
+      "path": "PHASE-2.9.md",
+      "sha256": "63ef783ec00b9c3b4b7b81e9bc6dc1c044db66d492e1c4f5fbe2187f0f22810e",
+      "bytes": 569
+    },
+    {
+      "path": "PHASE-3.0.md",
+      "sha256": "7c2f6e336e4e5d4ad111b875d03ea59ea8e859af8bc3d3d3d7c0c8e783f1a486",
+      "bytes": 582
+    },
+    {
+      "path": "PHASE-3.1.md",
+      "sha256": "dde56b680d14a7c2a67968c55ce6b898e1593c3a977c5eed3dfd3a0956c5f6c0",
+      "bytes": 543
+    },
+    {
+      "path": "PHASE-3.2.md",
+      "sha256": "256ac3ce7804a30c208b4690ad8df63bf0739d4733c4a4c3dfca4da78f46c049",
+      "bytes": 535
+    },
+    {
+      "path": "PHASE-3.3.md",
+      "sha256": "7a82858241a730d28ba0fcdca17a77b6b44a51a774e21e9599433abf5e8f4d9e",
+      "bytes": 487
+    },
+    {
+      "path": "PHASE-3.4.md",
+      "sha256": "61d56f2cc64a4cd365c55b8670286aced0d1d3d49ff3c0f737b932c6affa9f38",
+      "bytes": 514
+    },
+    {
+      "path": "README.md",
+      "sha256": "4a0f501f20c7d2a9651ed3d1900b305ab8e9814372d3139b32647a8b555603af",
+      "bytes": 468
+    },
+    {
+      "path": "RELEASE-MANIFEST.json",
+      "sha256": "6e521f572ee42233ca9004009f17ff3528e6fd6859f6329217ca3a4572479f9f",
+      "bytes": 311
+    },
+    {
+      "path": "SCROLL-FIX.md",
+      "sha256": "011304e7cd88cde9ab850d02aba8e27b1f3ecbfa8c5868231d065fab459e348f",
+      "bytes": 430
+    },
+    {
+      "path": "SECURITY.md",
+      "sha256": "7368b19a0c7268cbd1028c78c0fa9b5d1aecc904ca3b88b6c4f1074272717e1d",
+      "bytes": 517
+    },
+    {
+      "path": "SPRINT-1-INVENTORY.json",
+      "sha256": "949e33481c5575120345d163958074ef5397169b6fb7d27dfd62bee2082ad620",
+      "bytes": 3009
+    },
+    {
+      "path": "SPRINT-1-README.md",
+      "sha256": "9982004f68e5dc89f65605cff545862d0e482f66c02e6f1533f9bf6b1aaff867",
+      "bytes": 1086
+    },
+    {
+      "path": "SPRINT-10-COMPLETION-MATRIX.md",
+      "sha256": "993b95aa5eeb41f36861b98f0fedb1348c08195a6f435544e55ea82473f2eb88",
+      "bytes": 571
+    },
+    {
+      "path": "SPRINT-10-INVENTORY.json",
+      "sha256": "833cda9e796ae4312ab2e6c489b172d1d8b345029d1474ccd511aad68b7573c3",
+      "bytes": 4504
+    },
+    {
+      "path": "SPRINT-10-README.md",
+      "sha256": "d33433eb1dcf211653d6b553c686e05e9660c82dce25bcaafcb6b8c4ad8fbf9f",
+      "bytes": 653
+    },
+    {
+      "path": "SPRINT-10-SYNTAX-CHECK.json",
+      "sha256": "f658f5afde10fe41d77fcb0fd67e6e7a3c797243e599ceb8017c2a084aff7289",
+      "bytes": 145
+    },
+    {
+      "path": "SPRINT-11-COMPLETION-MATRIX.md",
+      "sha256": "6c43f905301ee33b7ed926369510882e9fa226e4d04e37718f1af758023aef4c",
+      "bytes": 530
+    },
+    {
+      "path": "SPRINT-11-INVENTORY.json",
+      "sha256": "cef3f687428d6665f1c0e312bfe4454a8dd2002c54eafdc02e2964cf916e7bbe",
+      "bytes": 4740
+    },
+    {
+      "path": "SPRINT-11-README.md",
+      "sha256": "e23fc76c9a55926f36cbe8643d39425eea8dce5bc9cc4b5abf83f56a7e402eff",
+      "bytes": 594
+    },
+    {
+      "path": "SPRINT-11-SYNTAX-CHECK.json",
+      "sha256": "0f1b2d47f7deec732bdcda6bf7488946ec8f97d61c2432f29152510f1821d7f7",
+      "bytes": 518
+    },
+    {
+      "path": "SPRINT-2-COMPLETION-MATRIX.md",
+      "sha256": "8b3af163eed1333393c1becea2d3c7757d987d2cada5ac974785aeec42437b8a",
+      "bytes": 750
+    },
+    {
+      "path": "SPRINT-2-INVENTORY.json",
+      "sha256": "461b8e5b978d28df2afb1411207a0e4bc5cf69a6004f211fa1bd8d3b70e5c7bf",
+      "bytes": 3150
+    },
+    {
+      "path": "SPRINT-2-README.md",
+      "sha256": "97e0573b268772b93b67b2c3363fd3ac465f495d93ce47e13c653255c4dbdd42",
+      "bytes": 1054
+    },
+    {
+      "path": "SPRINT-3-COMPLETION-MATRIX.md",
+      "sha256": "ede6ae364c14727034acb207bdc5477d45055887047b23097f054dc633fca262",
+      "bytes": 476
+    },
+    {
+      "path": "SPRINT-3-INVENTORY.json",
+      "sha256": "4f44eeaae0a2bd0c26ca6a9ab80a3b6450c26b59148358475f6f5ae2531b3dd2",
+      "bytes": 3227
+    },
+    {
+      "path": "SPRINT-3-README.md",
+      "sha256": "716047d6be4e9b712794b209a48ce277b99bab2751e514a77084105f36ad42e3",
+      "bytes": 634
+    },
+    {
+      "path": "SPRINT-4-COMPLETION-MATRIX.md",
+      "sha256": "71f156d155a8138b9dfedc299cc6d78f0f6b664cb72cf10443b5fd362884388c",
+      "bytes": 606
+    },
+    {
+      "path": "SPRINT-4-INVENTORY.json",
+      "sha256": "a03bfcd78aa6e1cbd2b018c9a30de40d5e72fa2eb6ed10b01382e67368ea4111",
+      "bytes": 3355
+    },
+    {
+      "path": "SPRINT-4-README.md",
+      "sha256": "5f9c90b40adc565f2973bc1ba1e9d14ef80c739c0be6670d7382066f1abc91a3",
+      "bytes": 818
+    },
+    {
+      "path": "SPRINT-5-COMPLETION-MATRIX.md",
+      "sha256": "f089c78f28ec909bbf94779cc850c8caf68fed5475ccaf282b5e0fc7b03ffd39",
+      "bytes": 740
+    },
+    {
+      "path": "SPRINT-5-INVENTORY.json",
+      "sha256": "eb877cf578a9a1e367370da9ebb9fa97b5576ffdff474350646b746493d8b04c",
+      "bytes": 3511
+    },
+    {
+      "path": "SPRINT-5-README.md",
+      "sha256": "50c8cf9edc620fcc777a3c2a734f9e773a528d785ae8cae0de7269b368b3e341",
+      "bytes": 1290
+    },
+    {
+      "path": "SPRINT-5-SYNTAX-CHECK.json",
+      "sha256": "5b13fb50c1075afcc29f00a0cdaf907d0e4a943e306cc423201abbb401637501",
+      "bytes": 139
+    },
+    {
+      "path": "SPRINT-6-COMPLETION-MATRIX.md",
+      "sha256": "796c5adcedfa1794aae7ccd05ad93dfc1c677bf9524e0736493d7e9bf4f299e2",
+      "bytes": 626
+    },
+    {
+      "path": "SPRINT-6-INVENTORY.json",
+      "sha256": "0d6df50ceaea6cd938bb11c818eb4d7476187ae81e91c858151f9cc0677f7e63",
+      "bytes": 3728
+    },
+    {
+      "path": "SPRINT-6-README.md",
+      "sha256": "39c96a4798c5dd5fe798f28a3e897660c633d6039ac470dcb59edf19fab1ba68",
+      "bytes": 773
+    },
+    {
+      "path": "SPRINT-6-SYNTAX-CHECK.json",
+      "sha256": "746f4d9fdb8e88c344848815050bb843acbbf72adbe997c2d47763b2355ea373",
+      "bytes": 147
+    },
+    {
+      "path": "SPRINT-7-COMPLETION-MATRIX.md",
+      "sha256": "9b44f91c6724f647cd224e63da5f9d1b3808746b83df82176b1d155483aea573",
+      "bytes": 628
+    },
+    {
+      "path": "SPRINT-7-INVENTORY.json",
+      "sha256": "0981c37e3db6a985bd373e428f4e2031269e7b0072d3e97945ef4f65d7bfb120",
+      "bytes": 3873
+    },
+    {
+      "path": "SPRINT-7-README.md",
+      "sha256": "99788aa5e3736bf7432516f80c6dafb4cf3e9845ef530b09ceb9f24e03c6b492",
+      "bytes": 879
+    },
+    {
+      "path": "SPRINT-7-SYNTAX-CHECK.json",
+      "sha256": "10b7349c5436c172f28077875bc804a7eeb6f7471929e0f110aba81ed0bc4789",
+      "bytes": 69
+    },
+    {
+      "path": "SPRINT-8-COMPLETION-MATRIX.md",
+      "sha256": "062e4186e11976681066c13009bbd301130ba41f39b5ee45851776437d4bf0a8",
+      "bytes": 661
+    },
+    {
+      "path": "SPRINT-8-INVENTORY.json",
+      "sha256": "f1671d2f065e7e2558e68e57f90a9644cca38f0603df7dcf743a92c1db8a58b4",
+      "bytes": 4083
+    },
+    {
+      "path": "SPRINT-8-README.md",
+      "sha256": "fa71b6ae08b405ec2cd1eae5ed909460f9ef616aa7db23631054a2aeaa1a078c",
+      "bytes": 686
+    },
+    {
+      "path": "SPRINT-8-SYNTAX-CHECK.json",
+      "sha256": "8069339385a73e824e7e11604079c89cc3fb29baa4903111a42684f025c4bf2b",
+      "bytes": 147
+    },
+    {
+      "path": "SPRINT-9-COMPLETION-MATRIX.md",
+      "sha256": "468f16a34d5c58b70cb118205ace5360607f16b922caf120d9bbde923bfcdcb7",
+      "bytes": 597
+    },
+    {
+      "path": "SPRINT-9-INVENTORY.json",
+      "sha256": "9baff565a859a01de43327552d91bc6e5d88d1ce6b16c44541243520a197c4ec",
+      "bytes": 4321
+    },
+    {
+      "path": "SPRINT-9-README.md",
+      "sha256": "924b9d68088fe8e6df3e92e136cb048167146f5f74895c56e91b1b652a6e62d2",
+      "bytes": 644
+    },
+    {
+      "path": "SPRINT-9-SYNTAX-CHECK.json",
+      "sha256": "2271bd1dbe437e4e1aa2603b381d12f8fda6be554dffe53d93195ec8f9a5ed9c",
+      "bytes": 373
+    },
+    {
+      "path": "adaptive-learning.html",
+      "sha256": "d9e4d2229eec577247b2d6c084e6e1c9f6d06c1cb084f324650264c0ac4879c8",
+      "bytes": 10881
+    },
+    {
+      "path": "ai-learning-companion.html",
+      "sha256": "2dc6ef89a24c5b1d5fc5c3bea12ee2bf90cce092fe01c49fd46b4e2398b4a48e",
+      "bytes": 10531
+    },
+    {
+      "path": "app.js",
+      "sha256": "377effd402844dad421251b7ef5aaf90f083b4db862ecaff54024d8ba0905b8f",
+      "bytes": 3062
+    },
+    {
+      "path": "application-copilot.html",
+      "sha256": "05712cd0c51c60b7ec55214a831cb085c1db45f0e12e87adddb63caf58ee2060",
+      "bytes": 11030
+    },
+    {
+      "path": "backend/.env.example",
+      "sha256": "988c62bb884320f1525f7ce299ab7ab3c139c995d408835047fc1fcf7f39c77a",
+      "bytes": 319
+    },
+    {
+      "path": "backend/Dockerfile",
+      "sha256": "9c75282b5801e919749fe0043f96f77e7b68842c9cdea75b790ac012c461a637",
+      "bytes": 195
+    },
+    {
+      "path": "backend/package.json",
+      "sha256": "5f24e40ecea38921110b47d82fc6434bb179799ffb2931289a9a3b91cd44ad7a",
+      "bytes": 1179
+    },
+    {
+      "path": "backend/prisma/migrations/0001_init/migration.sql",
+      "sha256": "98e1de8f4630859dd0874e92fa51c8d53a26b7b28d072870ef7bba27c1952ce7",
+      "bytes": 245
+    },
+    {
+      "path": "backend/prisma/schema.prisma",
+      "sha256": "bfc2618df0f70022593d5380530a17cf87abf7b3ec05d11cab6d4149da3cf206",
+      "bytes": 19474
+    },
+    {
+      "path": "backend/scripts/seed.js",
+      "sha256": "6bb9ba7e77cb632dbb2d53e5e8821672a1d5100a570cccf9ba6e6fd34a747685",
+      "bytes": 2078
+    },
+    {
+      "path": "backend/src/ai-engine.js",
+      "sha256": "973312a41e473be0f86865053c640caa0983ea16a3ce3cb34e421d85d4938d96",
+      "bytes": 3475
+    },
+    {
+      "path": "backend/src/capability-engine.js",
+      "sha256": "5de43b1961e00bbacdf3200665978f1352ba7eb85b52ca44aaa27fcce8e9b44a",
+      "bytes": 1146
+    },
+    {
+      "path": "backend/src/config.js",
+      "sha256": "fbe99124b4dde5dfb8c9e0c347454a0468a3982c97b1b629d25c9a98f81c36d7",
+      "bytes": 586
+    },
+    {
+      "path": "backend/src/operations-engine.js",
+      "sha256": "93da89a0f939619b197475fb74ca154a5a7c92075bc236cbb30389a74ff6910a",
+      "bytes": 750
+    },
+    {
+      "path": "backend/src/qa-suite.js",
+      "sha256": "4cf2d146c84e82274138622b198a00702d86b21323b69c750f6fec8c44d00727",
+      "bytes": 534
+    },
+    {
+      "path": "backend/src/release-readiness.js",
+      "sha256": "8b79e38aae0fd0fc60340a79ef2d139019d85af4102b1f73da1e608af4f86179",
+      "bytes": 1051
+    },
+    {
+      "path": "backend/src/server.js",
+      "sha256": "b9feac84dda2f6e1a2032662a65b797311b7830c7414e2312f5bdaa2ca300d1a",
+      "bytes": 15101
+    },
+    {
+      "path": "backend/src/student-journey.js",
+      "sha256": "a287d4decb47747f0606bcafc827dc6c5f7ae71d528f3b4d91f7633c0807512e",
+      "bytes": 1136
+    },
+    {
+      "path": "backend/tests/health.test.js",
+      "sha256": "1afebe7a181310ed0d15c6317da74d1029bf77e3fd59b30f0c877138feeec322",
+      "bytes": 389
+    },
+    {
+      "path": "career-capability-passport.html",
+      "sha256": "13b8e3bc0c7a10349df3a2cb144ec25513e694471249326dcce9c08d6a8ba39f",
+      "bytes": 12690
+    },
+    {
+      "path": "career-navigator.html",
+      "sha256": "383bb810bf9aa8ab910c8d2e4b01b4b27a6fdce469631eacdafc77f751f353de",
+      "bytes": 11189
+    },
+    {
+      "path": "course-chapter.html",
+      "sha256": "3bffe482af3dbaeb06eb301782becd8646e995f6a16d72fba6bf01f191b311cd",
+      "bytes": 6146
+    },
+    {
+      "path": "docs/API-CONTRACT.md",
+      "sha256": "42c44b3e0f55b6254be2e68e23728a53ad0962de0ccdd8b09264b00668374cb8",
+      "bytes": 653
+    },
+    {
+      "path": "docs/LEVEL-5-ARCHITECTURE.md",
+      "sha256": "f61ef0e06de632b58432ee3b64e4dfc8e9d82a3a44d47642d2ee03c005bc114b",
+      "bytes": 1573
+    },
+    {
+      "path": "docs/PRODUCTION-CHECKLIST.md",
+      "sha256": "02737edb117e5e194c9c06200598eb65157b7951af110139198d2ee9fccddca1",
+      "bytes": 1184
+    },
+    {
+      "path": "evidence-portfolio.html",
+      "sha256": "b084450da9aed2f08fef7b8a1c4843c1c77fd063a02de5fbaa8c092d18e689a9",
+      "bytes": 12259
+    },
+    {
+      "path": "frontend/adaptive-learning.html",
+      "sha256": "0a58ff74d08bbde307fa63279ce62958d2d2d3cc4703f9e32a5bee52be7bc70b",
+      "bytes": 10918
+    },
+    {
+      "path": "frontend/ai-learning-companion.html",
+      "sha256": "ae17d6b52743e3574e98303fa5b8801b8fc5ff43c08ff403e49b8005dde0300d",
+      "bytes": 10568
+    },
+    {
+      "path": "frontend/ai-learning-engine.html",
+      "sha256": "709641a0ea70c9e4efb59aca7151e9aec3ab1fcb1f6ba91956e813d5aab27841",
+      "bytes": 6035
+    },
+    {
+      "path": "frontend/api-client.js",
+      "sha256": "3d39e61670ec68d73d26fd2a3ba7f3a5d0ed4d5a5fb5e21a5c2b5b098bbe9b3a",
+      "bytes": 4825
+    },
+    {
+      "path": "frontend/app.js",
+      "sha256": "377effd402844dad421251b7ef5aaf90f083b4db862ecaff54024d8ba0905b8f",
+      "bytes": 3062
+    },
+    {
+      "path": "frontend/application-copilot.html",
+      "sha256": "de9f1a505b7ede8a68a9838a20f91d66df4ca056c2917cff637a6af9a5153683",
+      "bytes": 11067
+    },
+    {
+      "path": "frontend/career-capability-passport.html",
+      "sha256": "46d158dde1a0895217fac54a101060658d612f64f6fc4dfb43c14ef92c59d253",
+      "bytes": 4713
+    },
+    {
+      "path": "frontend/career-navigator.html",
+      "sha256": "bcb668ade35eff84c73dd30bbe9e16fa0de560f55a3a2e258ced135d539ab92a",
+      "bytes": 11226
+    },
+    {
+      "path": "frontend/course-chapter.html",
+      "sha256": "422af7898c06822d26cbd5bc9d29027cf73cdbaccdcb0c8778b39f702ecbb5ff",
+      "bytes": 6183
+    },
+    {
+      "path": "frontend/evidence-portfolio.html",
+      "sha256": "95c9a17a07abe85d17337e4d9ab12a2638c1667be9de0f3552931b1b042aedb5",
+      "bytes": 12296
+    },
+    {
+      "path": "frontend/final-release.html",
+      "sha256": "d629a5edbae08c7c34a1e56be636194bd9c8a0bd87368b3374ef7c28318ec690",
+      "bytes": 3985
+    },
+    {
+      "path": "frontend/index.html",
+      "sha256": "12fa151f2dd89b5643dc3a12a105875ef4003d5e0c0a669758e43dffe3d7685c",
+      "bytes": 12533
+    },
+    {
+      "path": "frontend/interview-lab.html",
+      "sha256": "c01014f921c61c3707b53058ad4fe726778d289106479b4bc4b64b68142e1fbb",
+      "bytes": 10300
+    },
+    {
+      "path": "frontend/learning-analytics.html",
+      "sha256": "67d5833a90a8ce500e58dad495dd83cd5bae72453e7c7fa9c3b3e1cb5c0bd243",
+      "bytes": 12411
+    },
+    {
+      "path": "frontend/learning-graph.html",
+      "sha256": "4f4eb1bf9ef1e32f096ae6d0bf89ceb24b020ae02ad58aaa3bde325d914b1c6f",
+      "bytes": 12439
+    },
+    {
+      "path": "frontend/learning-path.html",
+      "sha256": "7516c3a2b3454ba25149f7aae1e1b716c46216cc21160e3eebc9c583ab95d20e",
+      "bytes": 7154
+    },
+    {
+      "path": "frontend/learning-twin-engine.html",
+      "sha256": "eb62d55861aefc779df6e342798faa5669bb910353e24d7b3f7d690adec09394",
+      "bytes": 5893
+    },
+    {
+      "path": "frontend/learning-twin.html",
+      "sha256": "38b1e6dd9403167986ebcddb9f741e4c5ae4ae00ceddb6293adcd27769465a15",
+      "bytes": 10546
+    },
+    {
+      "path": "frontend/level-4-status.html",
+      "sha256": "359f68434dfa0d27edb80fa462165c68931d6dbaeb35ab58a447a6f62199c899",
+      "bytes": 9516
+    },
+    {
+      "path": "frontend/live-classroom.html",
+      "sha256": "c04a0af4b1278a9a672df19dca16d8239e7562f01869da1dc430f6f0751e0bfa",
+      "bytes": 6182
+    },
+    {
+      "path": "frontend/mentor-connect.html",
+      "sha256": "2c1b4a5ca8173d8451bc70077ae334104784e4608ad367db94f9b799c5fa279d",
+      "bytes": 12249
+    },
+    {
+      "path": "frontend/motivation.html",
+      "sha256": "d28cdd22747af0fedd75f353ed8bcac1814fc8eede7f3879de37b1b5f9694cb4",
+      "bytes": 11131
+    },
+    {
+      "path": "frontend/notifications.html",
+      "sha256": "b70166299d3f93feaebcfcbb80ef7eaf0198a00b0b90dcf0cb3fc63ba9035726",
+      "bytes": 11068
+    },
+    {
+      "path": "frontend/operations-analytics.html",
+      "sha256": "481bb79570047f86ad35c288cf835edbdb06d733a2b175a3503606fb8a471f71",
+      "bytes": 4423
+    },
+    {
+      "path": "frontend/opportunity-studio.html",
+      "sha256": "82a27747b2cac41c9e6cfe1e59a39428b5dcc4dece9619c3af0f4248e8e2d0c2",
+      "bytes": 11956
+    },
+    {
+      "path": "frontend/pdf-learning-composer.html",
+      "sha256": "a156f517e0c20250d7c886e4d52ac8f90db15a9670b3a85c93e7b0fda2799603",
+      "bytes": 6746
+    },
+    {
+      "path": "frontend/practice-lab.html",
+      "sha256": "166e640f633aad9a34ced19b1e09ae9fba172c09fa4e5f31594a1d8370b8b536",
+      "bytes": 6207
+    },
+    {
+      "path": "frontend/project-collaboration.html",
+      "sha256": "864276b7b652dc4cbcdd28545bd1e3258dae40e4b6d39f27fed6fd05220b7738",
+      "bytes": 11703
+    },
+    {
+      "path": "frontend/project-lab.html",
+      "sha256": "d9c21d9046f22291b274c5a6f91fa6a832185a410f830e6e81561f68bb0fbeee",
+      "bytes": 7837
+    },
+    {
+      "path": "frontend/qa-control-center.html",
+      "sha256": "1ecde1015e2647647328dc91674150fd5db3f6943266bf63dd5e116cb620e128",
+      "bytes": 3691
+    },
+    {
+      "path": "frontend/release-readiness.html",
+      "sha256": "b9fb6661c57b627d9e0683a26f2d789c8429d94c4782853344a5c8159065ab6c",
+      "bytes": 4006
+    },
+    {
+      "path": "frontend/skill-verification.html",
+      "sha256": "f29c5319aacac0af06d1c8c549db024f9c42a851a9e80a3db2f8c8681490dbfe",
+      "bytes": 13401
+    },
+    {
+      "path": "frontend/smart-study-planner.html",
+      "sha256": "19cdb80fc3f041a0826287e886702373c944a65f8bbcd6ec208b0ed73f416cc6",
+      "bytes": 12410
+    },
+    {
+      "path": "frontend/student-command-center.html",
+      "sha256": "5ce27f73af2770422569b106a5e25a2d4aba9f64e77339ebc8bcb56225dc0159",
+      "bytes": 4941
+    },
+    {
+      "path": "frontend/styles.css",
+      "sha256": "2ee44a96cece66481f4929810e3d3f48d29b342ef9d62400ac0e20b26636f3df",
+      "bytes": 13476
+    },
+    {
+      "path": "index.html",
+      "sha256": "12fa151f2dd89b5643dc3a12a105875ef4003d5e0c0a669758e43dffe3d7685c",
+      "bytes": 12533
+    },
+    {
+      "path": "infra/README.md",
+      "sha256": "f8b953f47c44a729fff422e8a3f9c87c8010e127dc7be013680f39dbc395efff",
+      "bytes": 484
+    },
+    {
+      "path": "infra/docker-compose.yml",
+      "sha256": "648a77273cbb2e13c5a408012188baab0e819c20e3a72952ac2d1e659d2d4d94",
+      "bytes": 785
+    },
+    {
+      "path": "interview-lab.html",
+      "sha256": "0af5de8aea54c22702aed1408da41b65187f2fe950c2727087de623b9eece523",
+      "bytes": 10263
+    },
+    {
+      "path": "learning-analytics.html",
+      "sha256": "210807891efaf3f2e518c360f32936bc4d1e3516ba9e31e7a7162d1d8d899efd",
+      "bytes": 12374
+    },
+    {
+      "path": "learning-graph.html",
+      "sha256": "3692793b834a9bf4b42373bf48ad6655ff90e4b682f38b6ef7a86a08a2ac9cba",
+      "bytes": 12402
+    },
+    {
+      "path": "learning-path.html",
+      "sha256": "7e945940e4256b1a12fdf0426a77a8477f6700848643bf664a0dff71503d7bca",
+      "bytes": 7117
+    },
+    {
+      "path": "learning-twin.html",
+      "sha256": "e37f530fff069124ef7bb61ab44df79f3d41702eed7e872984dcfcb8488d67f5",
+      "bytes": 10509
+    },
+    {
+      "path": "level-4-status.html",
+      "sha256": "0551140ded132fbdaf45bbe5f6182b4fdfa1a3fad58c8d2617a4a9465dfaaf65",
+      "bytes": 9479
+    },
+    {
+      "path": "live-classroom.html",
+      "sha256": "6e688cf35215557d9a9dfb52cc23bfcbf22fa20efa0226c32df64b444ecab301",
+      "bytes": 6145
+    },
+    {
+      "path": "mentor-connect.html",
+      "sha256": "8c83c1ee75a4279792dcdc933e4157f83db4ba41e47437296458100fa25f2747",
+      "bytes": 12212
+    },
+    {
+      "path": "motivation.html",
+      "sha256": "8c68244d9b2c6075d11a91c6facc284512c838f34e22bb9c85673647850b1c41",
+      "bytes": 11094
+    },
+    {
+      "path": "notifications.html",
+      "sha256": "94460326733ace0b8b92b54a7d5b29c666e4c3dcdec68ba1fe145b83f7686768",
+      "bytes": 11031
+    },
+    {
+      "path": "opportunity-studio.html",
+      "sha256": "d0d33e8de91cc0dc24409268e8feec2c812bfaea92e128a0563544ebe8b909ea",
+      "bytes": 11919
+    },
+    {
+      "path": "pdf-learning-composer.html",
+      "sha256": "0b5d18f869fc05cd3006455829427363bb8388c28ec5d5992640f31a3d7b9599",
+      "bytes": 6709
+    },
+    {
+      "path": "practice-lab.html",
+      "sha256": "3c563a58da566614a79cf4c62e6f3e33ecaa582d7cd708f165ef806327e10626",
+      "bytes": 6170
+    },
+    {
+      "path": "project-collaboration.html",
+      "sha256": "602f12c4a479bf0f3846382daec20b27fcc2b3190b802c43c97b4ae40abd88fd",
+      "bytes": 11666
+    },
+    {
+      "path": "project-lab.html",
+      "sha256": "ecf3f428298d524f985414d6a045d78320fe74bf97093713bc7474b9e5f94c7b",
+      "bytes": 7800
+    },
+    {
+      "path": "skill-verification.html",
+      "sha256": "a2c5226945d659a3ca0a255609405bc05e580ffabdf8145fb9a60aacc71a9785",
+      "bytes": 13364
+    },
+    {
+      "path": "smart-study-planner.html",
+      "sha256": "8e749dd49a93e74695b2b3c1f0e3994e027b4feeb5464515c88d6877051a5dc3",
+      "bytes": 12373
+    },
+    {
+      "path": "styles.css",
+      "sha256": "2ee44a96cece66481f4929810e3d3f48d29b342ef9d62400ac0e20b26636f3df",
+      "bytes": 13476
+    }
+  ]
+}

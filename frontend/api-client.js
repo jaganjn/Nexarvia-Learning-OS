@@ -49,6 +49,7 @@ window.NexarviaAPI = (() => {
     qaSmoke: ()=>request("/api/qa/smoke"),
     qaIntegrity: ()=>request("/api/qa/data-integrity"),
     studentJourney: ()=>request("/api/student/journey"),
+    releaseManifest: ()=>request("/api/release/manifest"),
     releaseReadiness: ()=>request("/api/release/readiness"),
     analyticsEvent: (body)=>request("/api/analytics/events",{method:"POST",body:JSON.stringify(body)}),
     analyticsSummary: (days=30)=>request(`/api/analytics/summary?days=${days}`),
