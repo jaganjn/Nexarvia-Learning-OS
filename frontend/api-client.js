@@ -46,6 +46,7 @@ window.NexarviaAPI = (() => {
     capabilities: ()=>request("/api/capabilities"),
     capabilityProfile: ()=>request("/api/capabilities/profile"),
     learningTwin: ()=>request("/api/learning-twin"),
+    releaseReadiness: ()=>request("/api/release/readiness"),
     analyticsEvent: (body)=>request("/api/analytics/events",{method:"POST",body:JSON.stringify(body)}),
     analyticsSummary: (days=30)=>request(`/api/analytics/summary?days=${days}`),
     exportLearningRecord: ()=>request("/api/ops/export-learning-record",{method:"POST"}),
