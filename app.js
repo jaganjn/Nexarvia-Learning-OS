@@ -12,7 +12,10 @@
     application: 76,
     capability: 82,
     graphCoverage: 78,
-    live: false
+    live: false,
+    adaptiveMode: "Build-first",
+    confidence: 91,
+    queue: 3
   };
   let state = {};
   try { state = Object.assign({}, defaultState, JSON.parse(localStorage.getItem(KEY) || "{}")); }
@@ -20,6 +23,15 @@
 
   function save() { localStorage.setItem(KEY, JSON.stringify(state)); }
   window.NexarviaOS = {
+    next: () => {
+      const actions = [
+        "Debug an API failure scenario",
+        "Explain the API error contract",
+        "Build the response-state component"
+      ];
+      const i = Math.max(0, Math.min(actions.length - 1, Number(state.queue || 1) - 1));
+      return actions[i];
+    },
     getState: () => ({...state}),
     set: (patch) => { state = Object.assign(state, patch); save(); window.dispatchEvent(new CustomEvent("nexarvia:state")); },
     reset: () => { state = Object.assign({}, defaultState); save(); window.dispatchEvent(new CustomEvent("nexarvia:state")); }
