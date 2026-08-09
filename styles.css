@@ -12,3 +12,22 @@ main{margin-left:238px;width:calc(100% - 238px);padding:0 34px 42px}.topbar{heig
 .composer-layout{display:grid;grid-template-columns:280px minmax(0,1fr) 290px;gap:15px}.dropzone{border:1px dashed #2a4b62;border-radius:9px;padding:24px 12px;text-align:center;color:#70869b;background:#091722}.outline-item{padding:8px;border-bottom:1px solid #172b3d;font-size:8px}.outline-item.active-outline{color:#71e4ed}.preview-section{padding:10px;border-bottom:1px solid #182e40}.analysis-list div{padding:8px;background:#0a1825;border-radius:7px;font-size:8px;color:#74889d}
 @media(max-width:900px){.sidebar{width:210px}main{margin-left:210px;width:calc(100% - 210px);padding:0 20px 30px}.grid,.main-grid,.composer-grid,.lesson-layout,.class-layout,.lab-layout,.project-grid{grid-template-columns:1fr}.project-side,.lab-side{grid-template-columns:1fr 1fr}.project-side>*:last-child,.lab-side>*:last-child{grid-column:1/-1}.mobile-menu{display:block}.topbar .search{max-width:none}}
 @media(max-width:650px){.sidebar{position:relative;width:100%;height:auto;display:block;padding:12px;z-index:5}.sidebar nav{grid-template-columns:repeat(2,1fr)}.side-card,.profile{display:none}.app{display:block}main{margin-left:0;width:100%;padding:0 14px 25px}.topbar{height:58px}.hero,.practice-hero,.project-hero{display:block}.project-status,.streak{margin-top:13px}.skills,.concept-grid,.evidence-grid{grid-template-columns:1fr 1fr}.project-milestones{grid-template-columns:1fr 1fr}.project-task{grid-template-columns:25px 1fr}.project-task em{display:none}.timeline{overflow:auto}.timeline div{min-width:95px}.project-side,.lab-side{grid-template-columns:1fr}.project-side>*:last-child,.lab-side>*:last-child{grid-column:auto}.composer-layout{grid-template-columns:1fr}}
+
+/* Phase 3.1 usability fix — independently scrollable sidebar */
+html, body { min-height:100%; }
+body { overflow-x:hidden; }
+.app { min-height:100vh; }
+.sidebar {
+  height:100vh;
+  max-height:100vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+  scrollbar-color:#24465c transparent;
+}
+.sidebar::-webkit-scrollbar{width:6px}
+.sidebar::-webkit-scrollbar-track{background:transparent}
+.sidebar::-webkit-scrollbar-thumb{background:#24465c;border-radius:10px}
+.sidebar nav{padding-bottom:14px}
+main{min-width:0}
