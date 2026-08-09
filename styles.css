@@ -31,3 +31,16 @@ body { overflow-x:hidden; }
 .sidebar::-webkit-scrollbar-thumb{background:#24465c;border-radius:10px}
 .sidebar nav{padding-bottom:14px}
 main{min-width:0}
+
+/* Nexarvia 4.0 integration utilities */
+html,body{height:100%;overflow:hidden}
+body{min-height:100vh}
+.app{height:100vh;min-height:0}
+.sidebar{height:100vh;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#294657 transparent}
+.sidebar::-webkit-scrollbar{width:7px}.sidebar::-webkit-scrollbar-track{background:transparent}.sidebar::-webkit-scrollbar-thumb{background:#294657;border-radius:8px}
+main{height:100vh;min-height:0;overflow-y:auto;overflow-x:hidden}
+.topbar{position:sticky;top:0;z-index:20}
+button:disabled{opacity:.55;cursor:default}
+.os-kicker{font-size:6px;letter-spacing:.15em;color:#69dfe7}
+.os-link{color:#69dfe7;text-decoration:none}
+.os-link:hover{text-decoration:underline}
