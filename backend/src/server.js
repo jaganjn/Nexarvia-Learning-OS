@@ -12,6 +12,7 @@ import { levelFor, scoreEvidence, aggregateMastery } from "./capability-engine.j
 import { recordAudit, recordEvent, queueJob, summarizeEvents } from "./operations-engine.js";
 import { securityHeaders, validateProductionEnv, readinessScore } from "./release-readiness.js";
 import { journeyState } from "./student-journey.js";
+import { smokeChecks } from "./qa-suite.js";
 
 const prisma = new PrismaClient();
 const app = express();

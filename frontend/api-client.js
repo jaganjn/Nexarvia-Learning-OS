@@ -46,6 +46,8 @@ window.NexarviaAPI = (() => {
     capabilities: ()=>request("/api/capabilities"),
     capabilityProfile: ()=>request("/api/capabilities/profile"),
     learningTwin: ()=>request("/api/learning-twin"),
+    qaSmoke: ()=>request("/api/qa/smoke"),
+    qaIntegrity: ()=>request("/api/qa/data-integrity"),
     studentJourney: ()=>request("/api/student/journey"),
     releaseReadiness: ()=>request("/api/release/readiness"),
     analyticsEvent: (body)=>request("/api/analytics/events",{method:"POST",body:JSON.stringify(body)}),

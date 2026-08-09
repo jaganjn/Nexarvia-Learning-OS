@@ -1,0 +1,30 @@
+{
+  "backend/src/server.js": {
+    "ok": true,
+    "stderr": ""
+  },
+  "backend/src/qa-suite.js": {
+    "ok": true,
+    "stderr": ""
+  },
+  "backend/src/student-journey.js": {
+    "ok": true,
+    "stderr": ""
+  },
+  "backend/src/release-readiness.js": {
+    "ok": true,
+    "stderr": ""
+  },
+  "backend/src/operations-engine.js": {
+    "ok": true,
+    "stderr": ""
+  },
+  "backend/src/ai-engine.js": {
+    "ok": true,
+    "stderr": ""
+  },
+  "backend/src/capability-engine.js": {
+    "ok": true,
+    "stderr": ""
+  }
+}
