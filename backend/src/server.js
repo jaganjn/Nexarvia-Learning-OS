@@ -9,6 +9,7 @@ import crypto from "node:crypto";
 import { loadConfig } from "./config.js";
 import { generateAI } from "./ai-engine.js";
 import { levelFor, scoreEvidence, aggregateMastery } from "./capability-engine.js";
+import { recordAudit, recordEvent, queueJob, summarizeEvents } from "./operations-engine.js";
 
 const prisma = new PrismaClient();
 const app = express();

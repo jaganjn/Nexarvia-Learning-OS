@@ -61,6 +61,41 @@ enum ContentAssetType {
   LINK
 }
 
+enum AuditAction {
+  CREATE
+  UPDATE
+  DELETE
+  PUBLISH
+  SUBMIT
+  REVIEW
+  VERIFY
+  LOGIN
+  EXPORT
+  AI_REQUEST
+}
+
+enum AnalyticsEventType {
+  PAGE_VIEW
+  LESSON_STARTED
+  LESSON_COMPLETED
+  PRACTICE_STARTED
+  PRACTICE_COMPLETED
+  ASSESSMENT_STARTED
+  ASSESSMENT_SUBMITTED
+  PROJECT_SUBMITTED
+  PROJECT_REVIEWED
+  AI_USED
+  RECOMMENDATION_VIEWED
+  RECOMMENDATION_ACCEPTED
+}
+
+enum JobStatus {
+  QUEUED
+  RUNNING
+  SUCCEEDED
+  FAILED
+}
+
 enum PassportVisibility {
   PRIVATE
   SHARED
@@ -157,6 +192,8 @@ model User {
   masterySnapshots MasterySnapshot[]
   capabilityPassport CapabilityPassport?
   opportunityMatches OpportunityMatch[]
+  auditLogs AuditLog[]
+  analyticsEvents AnalyticsEvent[]
 }
 
 model StudentProfile {
@@ -262,6 +299,50 @@ model Enrollment {
   @@unique([userId, courseId])
 }
 
+
+
+model AuditLog {
+  id          String      @id @default(cuid())
+  userId      String?
+  action      AuditAction
+  entityType  String
+  entityId    String?
+  metadata    Json?
+  ipHash      String?
+  createdAt   DateTime    @default(now())
+  user        User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
+  @@index([userId, createdAt])
+  @@index([entityType, entityId])
+}
+
+model AnalyticsEvent {
+  id          String            @id @default(cuid())
+  userId      String?
+  type        AnalyticsEventType
+  path        String?
+  entityType  String?
+  entityId    String?
+  metadata    Json?
+  createdAt   DateTime          @default(now())
+  user        User?             @relation(fields: [userId], references: [id], onDelete: SetNull)
+  @@index([userId, createdAt])
+  @@index([type, createdAt])
+}
+
+model BackgroundJob {
+  id          String    @id @default(cuid())
+  type        String
+  status      JobStatus @default(QUEUED)
+  payloadJson Json?
+  resultJson  Json?
+  error       String?
+  attempts    Int       @default(0)
+  runAt       DateTime  @default(now())
+  startedAt   DateTime?
+  finishedAt  DateTime?
+  createdAt   DateTime  @default(now())
+  @@index([status, runAt])
+}
 
 model CapabilityPassport {
   id          String             @id @default(cuid())
