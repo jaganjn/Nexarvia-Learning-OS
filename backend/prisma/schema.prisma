@@ -118,12 +118,6 @@ enum MatchStatus {
   DISMISSED
 }
 
-enum PassportVisibility {
-  PRIVATE
-  SHARED
-  PUBLIC
-}
-
 enum MasteryLevel {
   UNKNOWN
   BEGINNER
@@ -165,6 +159,32 @@ enum OpportunityStatus {
   CLOSED
 }
 
+enum LessonKind {
+  VIDEO
+  ARTICLE
+  EXERCISE
+  QUIZ
+  PROJECT
+  LIVE
+}
+
+enum SubmissionStatus {
+  DRAFT
+  SUBMITTED
+  REVIEWED
+  ACCEPTED
+  REJECTED
+}
+
+enum ProjectStatus {
+  DRAFT
+  OPEN
+  SUBMITTED
+  REVIEWED
+  COMPLETED
+  ARCHIVED
+}
+
 model User {
   id            String      @id @default(cuid())
   email         String      @unique
@@ -184,7 +204,6 @@ model User {
   projectSubmissions ProjectSubmission[]
   evidenceOwned Evidence[] @relation("EvidenceOwner")
   projectReviews ProjectReview[] @relation("ProjectReviewer")
-  evidenceOwned Evidence[] @relation("EvidenceOwner")
   recommendations Recommendation[]
   aiInteractions AIInteraction[]
   learningSignals LearningSignal[]
@@ -192,7 +211,6 @@ model User {
   masterySnapshots MasterySnapshot[]
   capabilityPassport CapabilityPassport?
   opportunityMatches OpportunityMatch[]
-  auditLogs AuditLog[]
   analyticsEvents AnalyticsEvent[]
 }
 
@@ -217,6 +235,7 @@ model Course {
   published   Boolean      @default(false)
   chapters    Chapter[]
   enrollments Enrollment[]
+  assets       ContentAsset[]
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
 }
@@ -287,7 +306,6 @@ model LessonProgress {
   @@index([userId])
 }
 
-
 model Enrollment {
   id          String   @id @default(cuid())
   userId      String
@@ -298,8 +316,6 @@ model Enrollment {
   lastSeenAt  DateTime @default(now())
   @@unique([userId, courseId])
 }
-
-
 
 model AuditLog {
   id          String      @id @default(cuid())
@@ -405,191 +421,8 @@ model OpportunityMatch {
 }
 
 model Capability {
-  id          String       @id @default(cuid())
-  slug        String       @unique
-  name        String
-  description String
-  evidence    Evidence[]
-  graphEdges  LearningEdge[] @relation("CapabilityEdges")
-}
-
-
-
-model Submission {
-  id         String           @id @default(cuid())
-  userId     String
-  evidenceId String?
-  title      String
-  status     SubmissionStatus @default(DRAFT)
-  score      Float?
-  feedback   String?
-  createdAt  DateTime         @default(now())
-  updatedAt  DateTime         @updatedAt
-  user       User             @relation(fields: [userId], references: [id], onDelete: Cascade)
-  evidence   Evidence?        @relation(fields: [evidenceId], references: [id])
-}
-
-
-
-model Project {
-  id             String        @id @default(cuid())
-  courseId       String?
-  title          String
-  description    String?
-  instructions   String?
-  status         ProjectStatus @default(DRAFT)
-  dueAt          DateTime?
-  maxScore       Float         @default(100)
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
-  course         Course?       @relation(fields: [courseId], references: [id], onDelete: SetNull)
-  submissions    ProjectSubmission[]
-  @@index([courseId])
-}
-
-model ProjectSubmission {
-  id             String       @id @default(cuid())
-  projectId      String
-  userId         String
-  status         ProjectStatus @default(SUBMITTED)
-  title          String?
-  description    String?
-  submissionUrl  String?
-  repositoryUrl  String?
-  demoUrl        String?
-  filesJson      Json?
-  submittedAt    DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
-  project        Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  reviews        ProjectReview[]
-  @@index([projectId, userId])
-}
-
-model ProjectReview {
-  id            String       @id @default(cuid())
-  submissionId  String
-  reviewerId    String
-  status        ReviewStatus @default(PENDING)
-  score         Float?
-  feedback      String?
-  rubricJson    Json?
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
-  submission    ProjectSubmission @relation(fields: [submissionId], references: [id], onDelete: Cascade)
-  reviewer      User         @relation("ProjectReviewer", fields: [reviewerId], references: [id], onDelete: Cascade)
-  @@index([submissionId])
-}
-
-model Evidence {
-  id             String        @id @default(cuid())
-  userId         String
-  submissionId   String?
-  type           EvidenceType
-  title          String
-  description    String?
-  score          Float?
-  verified       Boolean       @default(false)
-  metadata       Json?
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
-  user           User          @relation("EvidenceOwner", fields: [userId], references: [id], onDelete: Cascade)
-  submission     ProjectSubmission? @relation(fields: [submissionId], references: [id], onDelete: SetNull)
-  capabilityLinks CapabilityEvidence[]
-  @@index([userId, type])
-  @@index([submissionId])
-}
-
-model Assessment {
-  id String @id @default(cuid())
-  lessonId String?
-  title String
-  instructions String?
-  status AssessmentStatus @default(DRAFT)
-  passingScore Float @default(70)
-  maxAttempts Int @default(3)
-  timeLimitMin Int?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  lesson Lesson? @relation(fields: [lessonId], references: [id], onDelete: Cascade)
-  questions Question[]
-  attempts AssessmentAttempt[]
-}
-
-model Question {
-  id String @id @default(cuid())
-  assessmentId String
-  assessment Assessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
-  type QuestionType
-  prompt String
-  optionsJson Json?
-  answerJson Json?
-  explanation String?
-  points Float @default(1)
-  order Int
-  answers AttemptAnswer[]
-  @@unique([assessmentId, order])
-}
-
-model AssessmentAttempt {
-  id String @id @default(cuid())
-  assessmentId String
-  userId String
-  status AttemptStatus @default(IN_PROGRESS)
-  score Float?
-  passed Boolean?
-  startedAt DateTime @default(now())
-  submittedAt DateTime?
-  gradedAt DateTime?
-  assessment Assessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  answers AttemptAnswer[]
-  @@index([userId, assessmentId])
-}
-
-model AttemptAnswer {
-  id String @id @default(cuid())
-  attemptId String
-  questionId String
-  responseJson Json
-  isCorrect Boolean?
-  pointsAwarded Float?
-  feedback String?
-  attempt AssessmentAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
-  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
-  @@unique([attemptId, questionId])
-}
-
-model LearningEdge {
-  id             String      @id @default(cuid())
-  fromType       String
-  fromId         String
-  toType         String
-  toId           String
-  relation       String
-  confidence     Float       @default(1)
-  createdAt      DateTime    @default(now())
-  capabilityId   String?
-  capability     Capability? @relation("CapabilityEdges", fields: [capabilityId], references: [id])
-  @@index([fromType, fromId])
-  @@index([toType, toId])
-}
-
-model Recommendation {
-  id          String   @id @default(cuid())
-  userId      String
-  actionType  String
-  actionRef   String
-  reasonJson  Json
-  score       Float
-  accepted    Boolean?
-  createdAt   DateTime @default(now())
-}
-
-
-
-model Capability {
   id             String          @id @default(cuid())
+  slug           String          @unique
   key            String          @unique
   name           String
   description    String?
@@ -597,6 +430,8 @@ model Capability {
   levelOrder     Int             @default(1)
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt
+  evidenceLinks  CapabilityEvidence[]
+  graphEdges     LearningEdge[] @relation("CapabilityEdges")
   requirements   CapabilityRequirement[]
   profiles       CapabilityProfile[]
   passportItems  PassportItem[]
@@ -706,19 +541,4 @@ model Notification {
   readAt    DateTime?
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-
-model AuditLog {
-  id        String   @id @default(cuid())
-  userId    String?
-  action    String
-  entity    String
-  entityId  String?
-  hash      String?
-  metadata  Json?
-  createdAt DateTime @default(now())
-  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
-  @@index([userId, createdAt])
-  @@index([entity, entityId])
 }
