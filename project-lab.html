@@ -1,22 +1,79 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Nexarvia Learning OS — Project Lab</title>
-<style>
-*{box-sizing:border-box}body{margin:0;background:#07111d;color:#e9f3fb;font-family:Inter,Arial,sans-serif}button{font:inherit}.page{max-width:1180px;margin:auto;padding:28px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}.brand{font-weight:800;letter-spacing:.12em}.brand small{display:block;color:#6e8297;font-size:9px;letter-spacing:.16em;margin-top:4px}.nav{display:flex;gap:8px;flex-wrap:wrap}.nav a{color:#8194a8;text-decoration:none;border:1px solid #193047;border-radius:9px;padding:8px 11px;font-size:11px}.nav a.active{color:#6ee4ef;background:#0b2430;border-color:#2c6973}.eyebrow,.label{font-size:9px;font-weight:800;letter-spacing:.16em;color:#63dce9}.hero{display:flex;justify-content:space-between;gap:25px;align-items:end;padding:15px 0 25px}.hero h1{font-size:38px;line-height:1.05;margin:10px 0}.hero h1 span{color:#6ce3ef}.hero p{max-width:720px;color:#8294a8;line-height:1.7;font-size:13px}.status{border:1px solid #1d3a50;background:#0b1825;border-radius:12px;padding:14px 16px;min-width:145px}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#64e2d5;box-shadow:0 0 12px #64e2d5;margin-right:6px}.status b{font-size:9px;color:#74e3d8}.status small{display:block;color:#6b7e94;margin-top:7px}.grid{display:grid;grid-template-columns:minmax(0,1.6fr) 330px;gap:16px}.stack{display:grid;gap:16px}.card{border:1px solid #193148;background:linear-gradient(145deg,#0c1a28,#091521);border-radius:15px;padding:19px;box-shadow:0 16px 40px #00000018}.card h2{font-size:17px;margin:8px 0}.muted{color:#778ba0;font-size:11px;line-height:1.65}.head{display:flex;justify-content:space-between;gap:12px}.pill{font-size:9px;color:#78a2b9;border:1px solid #214057;border-radius:20px;padding:6px 9px;height:max-content}.milestones{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:22px}.mile{position:relative}.mile:after{content:"";position:absolute;left:23px;right:-8px;top:9px;height:1px;background:#1d3448}.mile:last-child:after{display:none}.mile i{display:grid;place-items:center;width:19px;height:19px;border-radius:50%;background:#101f2d;border:1px solid #29445a;color:#72879c;font-style:normal;font-size:8px;position:relative;z-index:1}.mile.done i,.mile.active i{border-color:#58dfe8;color:#6de6ed;background:#0b2b34}.mile b,.mile small{display:block;font-size:8px;margin-top:7px}.mile small{color:#687c92;margin-top:3px}.task{display:grid;grid-template-columns:28px 1fr auto;gap:10px;padding:12px 0;border-top:1px solid #182c40;align-items:start}.task:first-of-type{margin-top:7px}.num{width:23px;height:23px;display:grid;place-items:center;border-radius:7px;background:#102131;border:1px solid #274159;color:#778ca0;font-size:8px}.done{color:#65dfd5;background:#0d2929;border-color:#28625d}.task b,.task small{display:block}.task b{font-size:10px}.task small{font-size:8px;color:#687d93;margin-top:3px}.state{font-size:7px;color:#71849a;background:#0d1c2a;padding:6px 8px;border-radius:6px}.state.done-state{color:#63dcd2}.active-task{background:#0b1c2a;border-radius:9px;padding:12px 7px}.tags{display:flex;gap:5px;margin-top:6px}.tags span{font-size:7px;color:#73a5bd;padding:4px 6px;border:1px solid #1b3b51;border-radius:5px}.evidence{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.evidence div{padding:11px;border:1px solid #19344a;border-radius:9px;background:#0a1724}.evidence span{display:block;font-size:15px;color:#66dfe9;margin-bottom:7px}.evidence b,.evidence small{display:block}.evidence b{font-size:8px}.evidence small{font-size:7px;color:#687d93;margin-top:3px}.primary,.secondary{width:100%;border-radius:9px;padding:10px;border:0;font-size:9px;cursor:pointer}.primary{background:linear-gradient(90deg,#1da6d8,#6c67f4);color:#fff}.secondary{margin-top:7px;background:#0d1b28;border:1px solid #203a50;color:#8296a9}.person{display:flex;align-items:center;gap:9px;margin:12px 0}.avatar{width:29px;height:29px;border-radius:9px;background:#15334a;display:grid;place-items:center;color:#8de8f0;font-weight:700}.person b,.person small{display:block;font-size:8px}.person small{color:#687d93;margin-top:3px}.signal{display:flex;gap:8px;align-items:center;margin-top:13px}.signal span{font-size:7px;color:#7890a5;background:#0d1b29;padding:6px 7px;border-radius:6px}.signal i{height:4px;flex:1;background:linear-gradient(90deg,#48dce8 0 72%,#1a2d3f 72%);border-radius:4px}.timeline{display:flex;min-width:600px;margin-top:15px}.tl{flex:1;position:relative}.tl:after{content:"";position:absolute;top:7px;left:7px;right:0;height:1px;background:#1b3144}.tl:last-child:after{display:none}.tl i{display:block;width:15px;height:15px;border-radius:50%;background:#101f2e;border:1px solid #294259;position:relative;z-index:1}.tl.active i{background:#0d2e37;border-color:#56dfe7;box-shadow:0 0 10px #56dfe755}.tl b,.tl small{display:block;font-size:7px;margin-top:6px}.tl small{color:#687d93;margin-top:3px}.bottom{margin-top:16px;display:flex;justify-content:space-between;gap:18px;align-items:end}.bottom .primary{width:auto;min-width:180px}.workspace-note{margin-top:8px}@media(max-width:800px){.page{padding:17px}.hero{display:block}.status{margin-top:15px}.grid{grid-template-columns:1fr}.milestones{grid-template-columns:repeat(2,1fr)}.evidence{grid-template-columns:repeat(2,1fr)}.timeline{overflow:auto}.bottom{display:block}.bottom .primary{width:100%;margin-top:14px}}@media(max-width:480px){.nav a{font-size:9px;padding:7px}.hero h1{font-size:30px}.milestones{gap:13px}.evidence{grid-template-columns:1fr 1fr}}
-</style></head>
-<body><div class="page">
-<header class="top"><div class="brand">NEXARVIA<small>LEARNING OS</small></div><nav class="nav"><a href="index.html">Student Dashboard</a><a href="learning-path.html">Learning Path</a><a href="practice-lab.html">Practice</a><a class="active">Projects</a></nav></header>
-<section class="hero"><div><span class="eyebrow">PROJECT LAB · FRONTEND ENGINEERING</span><h1>Build something <span>real.</span></h1><p>Turn learning into evidence. Work through milestones, get feedback at the right moment, and finish with a portfolio-ready outcome.</p></div><div class="status"><span class="dot"></span><b>IN PROGRESS</b><small>Week 2 of 4</small></div></section>
-<section class="grid"><div class="stack">
-<article class="card"><div class="head"><div><span class="label">CAPSTONE PROJECT</span><h2>Cohort Learning Dashboard</h2><p class="muted">A responsive dashboard for tracking courses, practice, projects and progress.</p></div><span class="pill">62% complete</span></div><div class="milestones"><div class="mile done"><i>✓</i><b>Plan</b><small>Complete</small></div><div class="mile done"><i>✓</i><b>Design</b><small>Complete</small></div><div class="mile active"><i>3</i><b>Build</b><small>In progress</small></div><div class="mile"><i>4</i><b>Review</b><small>Upcoming</small></div></div></article>
-<article class="card"><div class="head"><div><span class="label">CURRENT MILESTONE</span><h2>Build the learning overview</h2></div><span class="pill">3 tasks</span></div>
-<div class="task"><span class="num done">✓</span><div><b>Create dashboard shell</b><small>Responsive layout, navigation and page regions</small></div><span class="state done-state">Done</span></div>
-<div class="task active-task"><span class="num">2</span><div><b>Connect progress data</b><small>Render course progress and current learning streak</small><div class="tags"><span>React</span><span>Data</span></div></div><span class="state">Building</span></div>
-<div class="task"><span class="num">3</span><div><b>Add next-action module</b><small>Recommend the next useful learning action</small></div><span class="state">Next</span></div></article>
-<article class="card"><span class="label">PROJECT EVIDENCE</span><h2>What you'll submit</h2><div class="evidence"><div><span>▣</span><b>Working build</b><small>Live project URL</small></div><div><span>⌘</span><b>Source code</b><small>Repository snapshot</small></div><div><span>◫</span><b>Design notes</b><small>Key decisions</small></div><div><span>◎</span><b>Reflection</b><small>What you learned</small></div></div></article>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><span class="brand-dot"></span><div><b>NEXARVIA</b><small>LEARNING OS</small></div></div>
+  <nav>
+    <a href="index.html">⌂ <span>Student Dashboard</span></a>
+    <a href="learning-path.html">◈ <span>Learning Path</span></a>
+    <a href="course-chapter.html">▤ <span>Course / Chapter</span></a>
+    <a href="pdf-learning-composer.html">▧ <span>PDF Composer</span></a>
+    <a href="live-classroom.html">◉ <span>Live Classroom</span></a>
+    <a href="practice-lab.html">⚡ <span>Practice Lab</span></a>
+    <a class="active">▣ <span>Project Lab</span></a>
+  </nav>
+</aside>
+<main>
+<header class="topbar"><button class="mobile-menu">☰</button><div class="search">⌕ <span>Search projects, skills, resources...</span></div><div class="top-actions"><button>◔</button><button>🔔</button><div class="mini-avatar">S</div></div></header>
+
+<section class="section-head">
+  <span class="eyebrow">PROJECT LAB · FRONTEND ENGINEERING</span>
+  <h1>Build something <span style="color:#69e5ff">real.</span></h1>
+  <p>Turn learning into evidence. Work through milestones, get feedback at the right moment, and finish with a portfolio-ready outcome.</p>
+</section>
+
+<section class="project-grid">
+<div class="project-main">
+<article class="card">
+<span class="label">CAPSTONE PROJECT</span>
+<h2>Cohort Learning Dashboard</h2>
+<p class="muted">A responsive dashboard for tracking courses, practice, projects and progress.</p>
+<div class="project-milestones">
+<div><b>✓</b><strong>Plan</strong><small>Complete</small></div>
+<div><b>✓</b><strong>Design</strong><small>Complete</small></div>
+<div class="active"><b>3</b><strong>Build</strong><small>In progress</small></div>
+<div><b>4</b><strong>Review</strong><small>Upcoming</small></div>
 </div>
-<aside class="stack"><article class="card"><span class="label">AI PROJECT MENTOR</span><h2>Your next best action</h2><p class="muted">Connect the progress data before polishing the interface. That gives the next screens real behavior to build around.</p><button class="primary">Start next task →</button><button class="secondary">Ask why</button></article>
-<article class="card"><span class="label">FEEDBACK LOOP</span><h2>Next review</h2><div class="person"><div class="avatar">M</div><div><b>Mentor review</b><small>Friday · 4:00 PM</small></div></div><p class="muted">Bring your current build and one question you want answered.</p><button class="secondary">Prepare review</button></article>
-<article class="card"><span class="label">CAPABILITY SIGNAL</span><h2>Frontend Systems</h2><div class="signal"><span>Developing</span><i></i><span>Strong</span></div><p class="muted">Project evidence is starting to strengthen this capability.</p></article></aside></section>
-<section class="card bottom"><div><span class="label">PROJECT TIMELINE</span><h2>From idea to portfolio</h2><div class="timeline"><div class="tl active"><i></i><b>Define</b><small>Problem & users</small></div><div class="tl active"><i></i><b>Design</b><small>Flows & interface</small></div><div class="tl active"><i></i><b>Build</b><small>Working product</small></div><div class="tl"><i></i><b>Validate</b><small>Test & improve</small></div><div class="tl"><i></i><b>Publish</b><small>Portfolio evidence</small></div></div><p class="muted workspace-note">Next: open the project workspace and continue the active milestone.</p></div><button class="primary">Open project workspace →</button></section>
-</div></body></html>
+</article>
+
+<article class="card">
+<span class="label">CURRENT MILESTONE</span><h2>Build the learning overview</h2>
+<div class="project-task"><i>✓</i><div><b>Create dashboard shell</b><small>Responsive layout, navigation and page regions</small></div><em>Done</em></div>
+<div class="project-task active"><i>2</i><div><b>Connect progress data</b><small>Render course progress and current learning streak</small></div><em>Building</em></div>
+<div class="project-task"><i>3</i><div><b>Add next-action module</b><small>Recommend the next useful learning action</small></div><em>Next</em></div>
+</article>
+
+<article class="card">
+<span class="label">PROJECT EVIDENCE</span><h2>What you'll submit</h2>
+<div class="evidence-grid">
+<div><b>▣ Working build</b><small>Live project URL</small></div>
+<div><b>⌘ Source code</b><small>Repository snapshot</small></div>
+<div><b>◫ Design notes</b><small>Key decisions</small></div>
+<div><b>◎ Reflection</b><small>What you learned</small></div>
+</div>
+</article>
+</div>
+
+<aside class="project-side">
+<article class="card"><span class="label">AI PROJECT MENTOR</span><h2>Your next best action</h2><p class="muted">Connect the progress data before polishing the interface. That gives the next screens real behavior to build around.</p><button class="primary full">Start next task →</button><button class="secondary full">Ask why</button></article>
+<article class="card"><span class="label">FEEDBACK LOOP</span><h2>Next review</h2><p class="muted"><b>Mentor review</b><br>Friday · 4:00 PM</p><p class="muted">Bring your current build and one question you want answered.</p><button class="secondary full">Prepare review</button></article>
+<article class="card"><span class="label">CAPABILITY SIGNAL</span><h2>Frontend Systems</h2><p class="muted">Developing → Strong</p><div class="signal-bar"><span></span></div></article>
+</aside>
+</section>
+
+<section class="card project-timeline">
+<span class="label">PROJECT TIMELINE</span><h2>From idea to portfolio</h2>
+<div class="timeline"><div class="on">Define</div><div class="on">Design</div><div class="on">Build</div><div>Validate</div><div>Publish</div></div>
+</section>
+</main></div>
+<style>
+.project-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px}.project-main,.project-side{display:grid;gap:16px}.project-side{align-content:start}.project-milestones{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}.project-milestones div{border-top:1px solid #21374b;padding-top:10px}.project-milestones b{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#102131;border:1px solid #294259;color:#7890a5;font-size:8px}.project-milestones .active b{border-color:#56dfe7;color:#6ce5eb;box-shadow:0 0 10px #56dfe755}.project-milestones strong,.project-milestones small{display:block;font-size:8px;margin-top:7px}.project-milestones small{color:#687d93;margin-top:3px}.project-task{display:grid;grid-template-columns:27px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-top:1px solid #182c40}.project-task i{width:23px;height:23px;display:grid;place-items:center;border-radius:7px;background:#102131;border:1px solid #294259;color:#71879d;font-style:normal;font-size:8px}.project-task.active{background:#0b1c2a;border-radius:8px;padding:12px 7px}.project-task b,.project-task small{display:block;font-size:9px}.project-task small{font-size:8px;color:#687d93;margin-top:3px}.project-task em{font-size:7px;color:#6ddfd6;font-style:normal}.project-task.active em{color:#74d8ed}.evidence-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}.evidence-grid div{padding:12px;border:1px solid #19344a;border-radius:8px;background:#0a1724}.evidence-grid b,.evidence-grid small{display:block;font-size:8px}.evidence-grid small{color:#687d93;margin-top:4px;font-size:7px}.signal-bar{height:5px;background:#182c3e;border-radius:5px;overflow:hidden}.signal-bar span{display:block;width:72%;height:100%;background:linear-gradient(90deg,#48dce8,#7566f4)}.project-timeline{margin-top:16px}.timeline{display:flex;gap:0;margin-top:16px}.timeline div{flex:1;border-top:1px solid #20364a;padding-top:8px;font-size:8px;color:#687d93}.timeline div.on{color:#69e1e9;border-top-color:#4adbe5}@media(max-width:800px){.project-grid{grid-template-columns:1fr}.project-milestones{grid-template-columns:repeat(2,1fr)}.evidence-grid{grid-template-columns:repeat(2,1fr)}.timeline{overflow:auto}.timeline div{min-width:90px}}
+</style>
+<script src="app.js"></script>
+</body></html>
