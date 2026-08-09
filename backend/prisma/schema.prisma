@@ -42,6 +42,27 @@ enum LessonKind {
   ASSESSMENT
 }
 
+enum QuestionType {
+  SINGLE_CHOICE
+  MULTIPLE_CHOICE
+  TRUE_FALSE
+  SHORT_TEXT
+  LONG_TEXT
+  NUMERIC
+}
+
+enum AssessmentStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum AttemptStatus {
+  IN_PROGRESS
+  SUBMITTED
+  GRADED
+}
+
 enum ContentAssetType {
   PDF
   VIDEO
@@ -74,6 +95,7 @@ model User {
   notifications Notification[]
   auditLogs     AuditLog[]
   lessonProgress LessonProgress[]
+  assessmentAttempts AssessmentAttempt[]
 }
 
 model StudentProfile {
@@ -126,6 +148,7 @@ model Lesson {
   order       Int
   assets      ContentAsset[]
   progress    LessonProgress[]
+  assessments Assessment[]
   @@unique([chapterId, order])
 }
 
@@ -214,6 +237,67 @@ model Submission {
   updatedAt  DateTime         @updatedAt
   user       User             @relation(fields: [userId], references: [id], onDelete: Cascade)
   evidence   Evidence?        @relation(fields: [evidenceId], references: [id])
+}
+
+
+model Assessment {
+  id String @id @default(cuid())
+  lessonId String?
+  title String
+  instructions String?
+  status AssessmentStatus @default(DRAFT)
+  passingScore Float @default(70)
+  maxAttempts Int @default(3)
+  timeLimitMin Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  lesson Lesson? @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  questions Question[]
+  attempts AssessmentAttempt[]
+}
+
+model Question {
+  id String @id @default(cuid())
+  assessmentId String
+  assessment Assessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  type QuestionType
+  prompt String
+  optionsJson Json?
+  answerJson Json?
+  explanation String?
+  points Float @default(1)
+  order Int
+  answers AttemptAnswer[]
+  @@unique([assessmentId, order])
+}
+
+model AssessmentAttempt {
+  id String @id @default(cuid())
+  assessmentId String
+  userId String
+  status AttemptStatus @default(IN_PROGRESS)
+  score Float?
+  passed Boolean?
+  startedAt DateTime @default(now())
+  submittedAt DateTime?
+  gradedAt DateTime?
+  assessment Assessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  answers AttemptAnswer[]
+  @@index([userId, assessmentId])
+}
+
+model AttemptAnswer {
+  id String @id @default(cuid())
+  attemptId String
+  questionId String
+  responseJson Json
+  isCorrect Boolean?
+  pointsAwarded Float?
+  feedback String?
+  attempt AssessmentAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  @@unique([attemptId, questionId])
 }
 
 model LearningEdge {
