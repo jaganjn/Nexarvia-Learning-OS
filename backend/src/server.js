@@ -333,6 +333,99 @@ app.patch("/api/profile", auth, asyncRoute(async (req,res) => {
   res.json(profile);
 }));
 
+
+// Sprint 10–12 integration routes
+app.get("/api/student/journey", auth, asyncRoute(async (req,res) => {
+  const [profile, progress, attempts, submissions, capabilities] = await Promise.all([
+    prisma.studentProfile.findUnique({where:{userId:req.user.id}}),
+    prisma.lessonProgress.findMany({where:{userId:req.user.id},include:{lesson:true},orderBy:{updatedAt:"desc"},take:50}),
+    prisma.assessmentAttempt.findMany({where:{userId:req.user.id},include:{assessment:true},orderBy:{createdAt:"desc"},take:20}),
+    prisma.projectSubmission.findMany({where:{userId:req.user.id},include:{project:true},orderBy:{createdAt:"desc"},take:20}),
+    prisma.capabilityProfile.findMany({where:{userId:req.user.id},include:{capability:true},orderBy:{mastery:"asc"},take:30})
+  ]);
+  res.json({journey:journeyState({profile,progress,attempts,submissions,capabilities}),
+    summary:{lessonsCompleted:progress.filter(x=>x.completed).length,assessments:attempts.length,projects:submissions.length,verifiedCapabilities:capabilities.filter(x=>x.verified).length}});
+}));
+
+app.get("/api/passport", auth, asyncRoute(async (req,res) => {
+  const passport=await prisma.capabilityPassport.findUnique({where:{userId:req.user.id},include:{items:{orderBy:{displayOrder:"asc"},include:{capability:true}}}});
+  res.json({passport});
+}));
+
+app.post("/api/passport", auth, asyncRoute(async (req,res) => {
+  const data=z.object({title:z.string().min(2).max(120).optional(),summary:z.string().max(2000).optional(),visibility:z.enum(["PRIVATE","SHARED","PUBLIC"]).optional()}).parse(req.body);
+  const passport=await prisma.capabilityPassport.upsert({where:{userId:req.user.id},update:data,create:{userId:req.user.id,slug:`u-${req.user.id}-${Date.now()}`,...data}});
+  res.status(201).json(passport);
+}));
+
+app.post("/api/analytics/events", auth, asyncRoute(async (req,res) => {
+  const data=z.object({type:z.string().min(2),path:z.string().optional(),entityType:z.string().optional(),entityId:z.string().optional(),metadata:z.any().optional()}).parse(req.body);
+  res.status(201).json(await recordEvent(prisma,{userId:req.user.id,...data}));
+}));
+
+app.get("/api/analytics/summary", auth, asyncRoute(async (req,res) => {
+  const days=Math.min(90,Math.max(1,Number(req.query.days||30)));
+  const events=await prisma.analyticsEvent.findMany({where:{userId:req.user.id,createdAt:{gte:new Date(Date.now()-days*86400000)}},orderBy:{createdAt:"asc"}});
+  res.json({days,summary:summarizeEvents(events),events});
+}));
+
+app.get("/api/ops/health", auth, requireRole("ADMIN"), asyncRoute(async (req,res) => {
+  const started=Date.now(); await prisma.$queryRaw`SELECT 1`;
+  const [queued,failed,users,events]=await Promise.all([
+    prisma.backgroundJob.count({where:{status:"QUEUED"}}),prisma.backgroundJob.count({where:{status:"FAILED"}}),
+    prisma.user.count(),prisma.analyticsEvent.count({where:{createdAt:{gte:new Date(Date.now()-86400000)}}})
+  ]);
+  res.json({status:"ok",database:"ok",latencyMs:Date.now()-started,queuedJobs:queued,failedJobs:failed,users,eventsLast24h:events});
+}));
+
+app.get("/api/ops/jobs", auth, requireRole("ADMIN"), asyncRoute(async (req,res) => {
+  res.json({jobs:await prisma.backgroundJob.findMany({orderBy:{createdAt:"desc"},take:50})});
+}));
+
+app.get("/api/ops/audit", auth, requireRole("ADMIN"), asyncRoute(async (req,res) => {
+  res.json({logs:await prisma.auditLog.findMany({orderBy:{createdAt:"desc"},take:100})});
+}));
+
+app.post("/api/ops/export-learning-record", auth, asyncRoute(async (req,res) => {
+  const [profile,evidence,attempts,submissions,events,passport]=await Promise.all([
+    prisma.studentProfile.findUnique({where:{userId:req.user.id}}),
+    prisma.evidence.findMany({where:{userId:req.user.id}}),
+    prisma.assessmentAttempt.findMany({where:{userId:req.user.id}}),
+    prisma.projectSubmission.findMany({where:{userId:req.user.id}}),
+    prisma.analyticsEvent.findMany({where:{userId:req.user.id},orderBy:{createdAt:"desc"},take:500}),
+    prisma.capabilityPassport.findUnique({where:{userId:req.user.id},include:{items:{include:{capability:true}}}})
+  ]);
+  await recordAudit(prisma,{userId:req.user.id,action:"EXPORT",entityType:"LearningRecord",metadata:{eventCount:events.length}});
+  res.json({exportedAt:new Date(),profile,evidence,attempts,submissions,events,passport});
+}));
+
+app.get("/api/release/readiness", auth, requireRole("ADMIN"), asyncRoute(async (req,res) => {
+  const env=validateProductionEnv(process.env);
+  const checks=[{name:"Required environment",ok:env.ok,details:{missing:env.missing}}];
+  try { await prisma.$queryRaw`SELECT 1`; checks.push({name:"Database connectivity",ok:true}); }
+  catch(e) { checks.push({name:"Database connectivity",ok:false,details:{error:e.message}}); }
+  const failedJobs=await prisma.backgroundJob.count({where:{status:"FAILED"}});
+  checks.push({name:"Failed jobs",ok:failedJobs===0,details:{count:failedJobs}});
+  res.json({score:readinessScore(checks),checks,warnings:env.warnings,checkedAt:new Date()});
+}));
+
+app.get("/api/qa/smoke", auth, requireRole("ADMIN"), asyncRoute(async (req,res) => {
+  const checks=smokeChecks(); try {await prisma.$queryRaw`SELECT 1`;checks.push({name:"Database query",ok:true})} catch(e){checks.push({name:"Database query",ok:false})}
+  res.json({ok:checks.every(x=>x.ok),checks,checkedAt:new Date()});
+}));
+
+app.get("/api/qa/data-integrity", auth, requireRole("ADMIN"), asyncRoute(async (req,res) => {
+  const invalidProfiles=await prisma.capabilityProfile.count({where:{mastery:{lt:0}}});
+  const failedJobs=await prisma.backgroundJob.count({where:{status:"FAILED"}});
+  const checks=[{name:"Capability mastery bounds",ok:invalidProfiles===0,count:invalidProfiles},{name:"Failed background jobs",ok:failedJobs===0,count:failedJobs}];
+  res.json({ok:checks.every(x=>x.ok),checks,checkedAt:new Date()});
+}));
+
+app.get("/api/release/manifest", auth, asyncRoute(async (req,res) => {
+  res.json({product:"Nexarvia Learning OS",version:"1.0.0",milestone:"Sprint 12 — Final Release",
+    modules:["Student Command Center","Learning Path","Practice Lab","Project Lab","AI Learning Engine","Learning Twin","Capability Passport","Career Opportunities","Operations & Analytics","Release Readiness","QA Control Center"]});
+}));
+
 app.use((err,_req,res,_next) => {
   console.error(err);
   const status = err?.name === "ZodError" ? 400 : 500;
