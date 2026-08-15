@@ -1,5 +1,8 @@
 window.NexarviaAPI = (() => {
-  const base = localStorage.getItem("nexarvia-api-base") || "http://localhost:4000";
+  const base =
+    localStorage.getItem("nexarvia-api-base") ||
+    window.NEXARVIA_API_BASE ||
+    "http://localhost:4000";
   async function request(path, options={}) {
     const headers = {"Content-Type":"application/json", ...(options.headers||{})};
     const token = localStorage.getItem("nexarvia-token");

@@ -29,7 +29,26 @@
 </section>
 <script src="app.js"></script><script src="api-client.js"></script>
 <script>
-async function ask(){const q=document.getElementById('q').value.trim();if(!q)return;const el=document.getElementById('answer');el.textContent='Thinking...';try{const r=await NexarviaAPI.aiChat(q);el.textContent=r.answer||JSON.stringify(r,null,2)}catch(e){el.textContent=e.message}}
+async function ask(){
+  const q=document.getElementById('q').value.trim();
+  if(!q)return;
+  const el=document.getElementById('answer');
+  el.textContent='Thinking...';
+  try{
+    const r=await NexarviaAPI.aiChat(q);
+    const parts=[];
+    if(r.state==='course_complete') parts.push('✓ COURSE COMPLETE');
+    else if(r.nextAction) parts.push('NEXT ACTION: '+r.nextAction.toUpperCase());
+    if(r.evaluation) parts.push('EVALUATION: '+r.evaluation.toUpperCase());
+    if(typeof r.score==='number') parts.push('SCORE: '+Math.round(r.score*100)+'%');
+    if(Array.isArray(r.missingConcepts)&&r.missingConcepts.length){
+      parts.push('MISSING CONCEPTS:\n'+r.missingConcepts.map(x=>'• '+x).join('\n'));
+    }
+    if(r.answer) parts.push(r.answer);
+    else if(!parts.length) parts.push(JSON.stringify(r,null,2));
+    el.textContent=parts.join('\n\n');
+  }catch(e){el.textContent=e.message;}
+}
 async function recommend(){const el=document.getElementById('recommendations');el.innerHTML='<div><b>Working...</b><small>Using your recent learning signals.</small></div>';try{const r=await NexarviaAPI.refreshAIRecommendations();el.innerHTML=(r.recommendations||[]).map(x=>`<div><b>${x.actionType}</b><small>${x.actionRef}</small></div>`).join('')||'<div><b>No new recommendation</b><small>Continue your current learning path.</small></div>'}catch(e){el.innerHTML='<div><b>Could not refresh</b><small>'+e.message+'</small></div>'}}
 async function remediate(){const el=document.getElementById('remediation');el.textContent='Building plan...';try{const r=await NexarviaAPI.aiRemediation();el.textContent=(r.summary||'')+'\\n\\n'+(r.steps||[]).map((x,i)=>(i+1)+'. '+x).join('\\n')}catch(e){el.textContent=e.message}}
 </script>

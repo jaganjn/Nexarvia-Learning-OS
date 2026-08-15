@@ -22,10 +22,34 @@ async function main() {
     update:{title:"API Integration",contentJson:{format:"learning-os",version:1}},
     create:{courseId:course.id,title:"API Integration",order:1,contentJson:{format:"learning-os",version:1}}
   });
-  await prisma.lesson.upsert({
+  const lessonContent = {
+    lesson: [
+      {heading:"Start with the request",text:"When an API-driven feature fails, inspect the request before changing code. Check the URL, HTTP method, request payload, and whether the request was actually sent."},
+      {heading:"Read the response",text:"Next inspect the HTTP status code and response body. The response helps narrow down whether the problem is authentication, the requested resource, validation, or the server."},
+      {heading:"Use the Network panel",text:"Open the browser developer tools and inspect the Network panel. Select the failed request and compare its URL, method, status, request data, and response."},
+      {heading:"Explain the failure",text:"A good debugging explanation connects the observed evidence to the next action. Do not guess the cause before checking the request and response."}
+    ],
+    concepts:["API request and response","HTTP method","Request URL","Request payload","HTTP status code","Response body","Network debugging"],
+    examples:[
+      {request:"GET /api/courses",description:"The frontend asks the backend for available courses."},
+      {request:"GET /api/lessons/:id",description:"The frontend requests a specific lesson."}
+    ],
+    practice:{
+      steps:["Open the browser Network panel.","Find the lesson request.","Check the request URL and HTTP method.","Check the HTTP status code.","Read the response body.","State the most likely next debugging action and explain why."],
+      scenario:"A learning page is not displaying its lesson data."
+    },
+    checkpoint:{
+      question:"What should you inspect when an API-driven page fails?",
+      answer:"Inspect the actual request and response: URL, method, payload, status code, and response body.",
+      requiredConcepts:["request","response","URL","HTTP method","payload","status code","response body"]
+    },
+    objectives:["Identify where an API request is failing.","Read the request and response in the browser Network panel.","Use the HTTP status code to narrow down the failure.","Explain the failure and the next debugging step clearly."]
+  };
+
+  const lesson = await prisma.lesson.upsert({
     where:{chapterId_order:{chapterId:chapter.id,order:1}},
-    update:{title:"Debugging API failures",kind:"PRACTICE", published:true},
-    create:{chapterId:chapter.id,title:"Debugging API failures",kind:"PRACTICE", published:true,order:1}
+    update:{title:"Debugging API failures",kind:"EXERCISE",published:true,contentJson:lessonContent},
+    create:{chapterId:chapter.id,title:"Debugging API failures",kind:"EXERCISE",published:true,order:1,contentJson:lessonContent}
   });
   const email = "demo@nexarvia.local";
   const passwordHash = await bcrypt.hash("ChangeMe123!",12);
